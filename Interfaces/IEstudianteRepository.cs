@@ -8,5 +8,6 @@ namespace Avance2Progreso.Interfaces
 {
     public class IEstudianteRepository
     {
+
     }
 }
