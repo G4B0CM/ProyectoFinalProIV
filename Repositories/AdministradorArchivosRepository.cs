@@ -11,10 +11,11 @@ namespace Avance2Progreso.Repositories
 {
     public class AdministradorArchivosRepository : IAdministradorRepository
     {
-        private string _fileCompetencias = Path.Combine(FileSystem.AppDataDirectory, "competencias.txt"); //Documento con información Competencias
-        private string _fileUsuarios = Path.Combine(FileSystem.AppDataDirectory, "usuarios.txt"); //Documento con información Usuarios
+        public string _fileCompetencias = Path.Combine(FileSystem.AppDataDirectory, "competencias.txt"); //Documento con información Competencias
+        public string _fileUsuarios = Path.Combine(FileSystem.AppDataDirectory, "usuarios.txt"); //Documento con información Usuarios
 
         // Crear una nueva competencia
+
         
         public bool CrearCompetencia(Competencias competencia)
         {
