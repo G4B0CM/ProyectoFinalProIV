@@ -3,7 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avance2Progreso.Views.Admin.AdminsHomePage"
              Title="Administrador">
+    
     <VerticalStackLayout Background="Beige">
+        <StackLayout Background="#142e4e" Padding="15">
+            <Label Text="Administrador" TextColor="White" HorizontalOptions="Center"/>
+        </StackLayout>
+        
         <Grid BackgroundColor="Beige">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -11,18 +16,17 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+ 
             </Grid.ColumnDefinitions>
             <Image Source="https://dce-documents.s3.amazonaws.com/s3fs-public/styles/max_650x650/public/2023-04/diners-club-sphaera-tarjeta_0.png.webp?itok=Z9tu5e1y" 
                    Grid.Row="0" Grid.Column="0" WidthRequest="200" HeightRequest="200" />
             <Image Source="https://dce-documents.s3.amazonaws.com/s3fs-public/styles/max_650x650/public/2020-11/discover_udla.png.webp?itok=plEnjadz" 
                    Grid.Row="0" Grid.Column="1" WidthRequest="200" HeightRequest="200" />
-            <Image Source="https://dce-documents.s3.amazonaws.com/s3fs-public/styles/max_650x650/public/2023-04/diners-club-miles-tarjeta_0.png.webp?itok=MkzjitVA" 
-               Grid.Row="0" Grid.Column="2" WidthRequest="200" HeightRequest="200" />
+
         </Grid>
         
        
-        <Label Text="Hola, Nombre del Administrador" TextColor="Black"/>
+        <Label Text="Hola, Nombre del Administrador" TextColor="Black" Margin="5"/>
         
         <Frame Background="White"
                CornerRadius="15" 
