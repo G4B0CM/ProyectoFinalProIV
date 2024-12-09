@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Avance2Progreso.Interfaces
 {
-    internal class IAdministradorRepository
+    public class IAdministradorRepository
     {
     }
 }
