@@ -1,4 +1,4 @@
-﻿using AndroidX.Annotations;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,6 +17,6 @@ namespace Avance2Progreso.Models
         [Required(ErrorMessage ="Categoria Requerida")]
         public string Categoria { get; set; }
         [Required(ErrorMessage ="Descripción Requerida")]
-        public string Descripción { get; set; }
+        public string Descripcion { get; set; }
     }
 }

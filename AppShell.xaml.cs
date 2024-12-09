@@ -10,6 +10,7 @@ namespace Avance2Progreso
         {
             InitializeComponent();
             ConfigureTabs(userRole);
+            Routing.RegisterRoute(nameof(CreateConcursoPage), typeof(CreateConcursoPage));
         }
 
         private void ConfigureTabs(string role)

@@ -15,24 +15,31 @@ namespace Avance2Progreso.Repositories
         private string _fileUsuarios = Path.Combine(FileSystem.AppDataDirectory, "usuarios.txt"); //Documento con información Usuarios
 
         // Crear una nueva competencia
-        public bool CrearCompetencias(Competencias competencia)
+        
+        public bool CrearCompetencia(Competencias competencia)
         {
             try
             {
-                List<Competencias> competencias = ListarCompetencias().ToList();// Leer competencias existentes
-
-                competencias.Add(competencia);// Agregar la nueva competencia
-
-                // Guardar la lista actualizada en el archivo
-                string json_data = JsonConvert.SerializeObject(competencias);
+                string json_data = JsonConvert.SerializeObject(competencia);
                 File.WriteAllText(_fileCompetencias, json_data);
-
                 return true;
             }
             catch (Exception)
             {
                 throw;
             }
+
+        }
+        public Competencias DevuelveCompetencia()
+        {
+            Competencias competencia = new Competencias();
+            if (File.Exists(_fileCompetencias))
+            {
+                string json_data = File.ReadAllText(_fileCompetencias);
+                competencia = JsonConvert.DeserializeObject<Competencias>(json_data);
+            }
+
+            return competencia;
         }
 
         // Listar todas las competencias

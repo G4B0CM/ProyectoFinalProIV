@@ -3,10 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avance2Progreso.Views.Admin.AdminsHomePage"
              Title="AdminsHomePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Admin Bienvenido"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="15">
+            <!-- Tarjeta para crear concursos -->
+            <Frame CornerRadius="10" BorderColor="Gray" HasShadow="True" Padding="0">
+                <Grid>
+                
+                    <StackLayout>
+                        <Image Source="iconagregarconcursos.png" Aspect="AspectFill" HeightRequest="300" WidthRequest="300"/>
+                        <StackLayout Padding="10">
+                            <Label Text="Crear Concurso" 
+                               FontSize="18" 
+                               FontAttributes="Bold"/>
+                            <Label Text="Navega para crear un nuevo concurso y administrarlo."
+                               FontSize="14" 
+                               TextColor="Gray"/>
+                            <Button Text="Ir a Crear Concurso" 
+                                    FontAttributes="Bold" 
+                                    BackgroundColor="#007ACC" 
+                                    TextColor="White" 
+                                    CornerRadius="10" 
+                                    Clicked="NavigateToCreateConcurso" />
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <!-- Tarjeta para crear estudiantes -->
+            <Frame CornerRadius="10" BorderColor="Gray" HasShadow="True" Padding="0">
+                <Grid>
+                     
+                    <StackLayout>
+                        <Image Source="iconagregarestudiante.png" Aspect="AspectFill" HeightRequest="300" WidthRequest="300"/>
+                        <StackLayout Padding="10">
+                            <Label Text="Crear Estudiante" 
+                               FontSize="18" 
+                               FontAttributes="Bold"/>
+                            <Label Text="Navega para crear un nuevo estudiante en el sistema."
+                               FontSize="14" 
+                               TextColor="Gray"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+
 </ContentPage>

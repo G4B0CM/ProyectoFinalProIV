@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Avance2Progreso.CreateConcursoPage"
+             Title="CreateConcursoPage">
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+            <!-- Encabezado -->
+            <Label Text="Bienvenido a la página Crear Concurso"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center" />
+
+            <!-- Logos -->
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Image Source="iconudla.png"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       WidthRequest="150"
+                       HeightRequest="150" />
+                <Image Source="icondiners.png"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       WidthRequest="150"
+                       HeightRequest="150" />
+            </HorizontalStackLayout>
+
+            <!-- Formulario -->
+            <Label Text="ID de la Competencia:" FontSize="15" FontAttributes="Bold" />
+            <Editor x:Name="editor_Id" Placeholder="Ingrese el ID de la competencia" />
+
+            <Label Text="Nombre de la Competencia:" FontSize="15" FontAttributes="Bold" />
+            <Editor x:Name="editor_Nombre" Placeholder="Ingrese el nombre de la competencia" />
+
+            <Label Text="Categoría de la Competencia:" FontSize="15" FontAttributes="Bold" />
+            <Editor x:Name="editor_Categoria" Placeholder="Ingrese la categoría de la competencia" />
+
+            <Label Text="Descripción de la Competencia:" FontSize="15" FontAttributes="Bold" />
+            <Editor x:Name="editor_Descripcion"
+                    Placeholder="Ingrese una descripción de la competencia"
+                    AutoSize="TextChanges" />
+
+            <Button Text="Guardar Competencia"
+                    Clicked="OnGuardarCompetenciaClicked"
+                    BackgroundColor="#007ACC"
+                    TextColor="White"
+                    CornerRadius="10" />
+
+            <!-- Tabla Informativa -->
+                <Label Text="Información de la Competencia:" FontSize="18" FontAttributes="Bold" />
+            
+                <Label Text="ID:"   />
+                <Label x:Name="Label_IdConcurso" Text="{Binding Id}"  />
+
+                <Label Text="Nombre:"  />
+                <Label x:Name="Label_NombreConcurso" Text="{Binding Nombre}"  />
+
+                <Label Text="Categoría:"  />
+                <Label x:Name="Label_CategoriaConcurso" Text="{Binding Categoria}"  />
+
+                <Label Text="Descripción:"  />
+                <Label x:Name="Label_DescripcionConcurso" Text="{Binding Descripcion}"  />
+            
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
