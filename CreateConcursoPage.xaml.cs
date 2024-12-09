@@ -12,7 +12,7 @@ public partial class CreateConcursoPage : ContentPage
 	{
         _administradorRepository = new AdministradorArchivosRepository();
         InitializeComponent();
-        competencia = _administradorRepository.DevuelveCompetencia(); // Inicializamos un objeto vacío
+        competencia = _administradorRepository.DevuelveCompetencia(); // Inicializamos un objeto vacío  
         BindingContext = competencia; // Se utiliza para vincular datos
     }
 

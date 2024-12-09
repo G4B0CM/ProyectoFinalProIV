@@ -12,6 +12,7 @@ public partial class AdminsHomePage : ContentPage
     private async void NavigateToCreateConcurso(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(CreateConcursoPage));
+
     }
     
 

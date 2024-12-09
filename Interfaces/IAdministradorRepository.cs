@@ -10,7 +10,9 @@ namespace Avance2Progreso.Interfaces
     public interface IAdministradorRepository
     {
         bool CrearCompetencia(Competencias competencia);
+
         Competencias DevuelveCompetencia();
+
         IEnumerable<Competencias> ListarCompetencias();
         bool CrearUsuarioEstudiante(User estudiante);
         IEnumerable<User> ListarUsuarios();
