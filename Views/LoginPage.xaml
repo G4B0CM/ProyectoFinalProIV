@@ -3,10 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avance2Progreso.Views.LoginPage"
              Title="LoginPage">
-    <StackLayout Padding="30" Spacing="15" VerticalOptions="Center">
-        <Entry x:Name="UsernameEntry" Placeholder="Usuario" />
-        <Entry x:Name="PasswordEntry" Placeholder="Contraseña" IsPassword="True" />
-        <Button Text="Iniciar sesión" Clicked="OnLoginClicked" />
-        <Label x:Name="ErrorMessage" TextColor="Red" IsVisible="False" />
+    
+
+    <StackLayout>
+
+        <!--Header-->
+        <StackLayout Background="#142e4e" Padding="15">
+        <Label Text="Iniciar sesión" TextColor="White" HorizontalOptions="Center"/>
+        </StackLayout>
+        
+        <!--Imagen-->
+        <StackLayout>
+            <Image Source="https://dce-documents.s3.amazonaws.com/s3fs-public/styles/max_650x650/public/2023-04/diners-club-sphaera-tarjeta_0.png.webp?itok=Z9tu5e1y"
+                   WidthRequest="250"
+                   HeightRequest="250"/>
+        </StackLayout>
+
+
+        <StackLayout Background="#315876" Padding="15">
+            <Label Text="Ingrese los siguientes datos" TextColor="White" HorizontalOptions="Center"/>
+        </StackLayout>
+
+        <StackLayout Padding="30" Spacing="25" VerticalOptions="Center">
+            <Entry x:Name="UsernameEntry" Placeholder="Usuario" />
+            <Entry x:Name="PasswordEntry" Placeholder="Contraseña" IsPassword="True" />
+            <Button Text="Iniciar sesión" Clicked="OnLoginClicked" BackgroundColor="#141718" />
+            <Label x:Name="ErrorMessage" TextColor="Red" IsVisible="False" />
+
+        </StackLayout>
     </StackLayout>
+    
+    
 </ContentPage>
