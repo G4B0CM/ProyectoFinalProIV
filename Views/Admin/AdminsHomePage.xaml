@@ -2,52 +2,55 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avance2Progreso.Views.Admin.AdminsHomePage"
-             Title="AdminsHomePage">
-
-    <ScrollView>
-        <StackLayout Padding="10" Spacing="15">
-            <!-- Tarjeta para crear concursos -->
-            <Frame CornerRadius="10" BorderColor="Gray" HasShadow="True" Padding="0">
-                <Grid>
-                
-                    <StackLayout>
-                        <Image Source="iconagregarconcursos.png" Aspect="AspectFill" HeightRequest="300" WidthRequest="300"/>
-                        <StackLayout Padding="10">
-                            <Label Text="Crear Concurso" 
-                               FontSize="18" 
-                               FontAttributes="Bold"/>
-                            <Label Text="Navega para crear un nuevo concurso y administrarlo."
-                               FontSize="14" 
-                               TextColor="Gray"/>
-                            <Button Text="Ir a Crear Concurso" 
-                                    FontAttributes="Bold" 
-                                    BackgroundColor="#007ACC" 
-                                    TextColor="White" 
-                                    CornerRadius="10" 
-                                    Clicked="NavigateToCreateConcurso" />
-                        </StackLayout>
-                    </StackLayout>
-                </Grid>
-            </Frame>
-
-            <!-- Tarjeta para crear estudiantes -->
-            <Frame CornerRadius="10" BorderColor="Gray" HasShadow="True" Padding="0">
-                <Grid>
-                     
-                    <StackLayout>
-                        <Image Source="iconagregarestudiante.png" Aspect="AspectFill" HeightRequest="300" WidthRequest="300"/>
-                        <StackLayout Padding="10">
-                            <Label Text="Crear Estudiante" 
-                               FontSize="18" 
-                               FontAttributes="Bold"/>
-                            <Label Text="Navega para crear un nuevo estudiante en el sistema."
-                               FontSize="14" 
-                               TextColor="Gray"/>
-                        </StackLayout>
-                    </StackLayout>
-                </Grid>
-            </Frame>
+             Title="Administrador">
+    
+    <VerticalStackLayout Background="Beige">
+        <StackLayout Background="#142e4e" Padding="15">
+            <Label Text="Administrador" TextColor="White" HorizontalOptions="Center"/>
         </StackLayout>
-    </ScrollView>
+        
+        <Grid BackgroundColor="Beige">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+ 
+            </Grid.ColumnDefinitions>
+            <Image Source="https://dce-documents.s3.amazonaws.com/s3fs-public/styles/max_650x650/public/2023-04/diners-club-sphaera-tarjeta_0.png.webp?itok=Z9tu5e1y" 
+                   Grid.Row="0" Grid.Column="0" WidthRequest="200" HeightRequest="200" />
+            <Image Source="https://dce-documents.s3.amazonaws.com/s3fs-public/styles/max_650x650/public/2020-11/discover_udla.png.webp?itok=plEnjadz" 
+                   Grid.Row="0" Grid.Column="1" WidthRequest="200" HeightRequest="200" />
 
+        </Grid>
+        
+       
+        <Label Text="Hola, Nombre del Administrador" TextColor="Black" Margin="5"/>
+        
+        <Frame Background="White"
+               CornerRadius="15" 
+               Padding="10" 
+               Margin="20">
+            <StackLayout>
+                <Label Text="Concursos Realizados: " TextColor="Black"/>
+            </StackLayout>
+            
+        </Frame>
+        
+        <Frame Background="White"
+                CornerRadius="15" 
+                Padding="10" 
+                Margin="20">
+            <StackLayout>
+                <Label Text="Concurso Actual: " TextColor="Black"/>
+                <Label Text="Puntos: 200pts" TextColor="Black"/>
+                <Label Text="Lista de Alumnos registrados:" TextColor="Black"/>
+            </StackLayout>
+            
+            
+
+        </Frame>
+
+    </VerticalStackLayout>
 </ContentPage>

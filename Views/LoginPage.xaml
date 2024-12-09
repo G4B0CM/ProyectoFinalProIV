@@ -9,9 +9,9 @@
 
         <!--Header-->
         <StackLayout Background="#142e4e" Padding="15">
-        <Label Text="Iniciar sesión" TextColor="White" HorizontalOptions="Center"/>
+            <Label Text="Iniciar sesión" TextColor="White" HorizontalOptions="Center"/>
         </StackLayout>
-        
+
         <!--Imagen-->
         <StackLayout>
             <Image Source="https://dce-documents.s3.amazonaws.com/s3fs-public/styles/max_650x650/public/2023-04/diners-club-sphaera-tarjeta_0.png.webp?itok=Z9tu5e1y"

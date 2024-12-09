@@ -3,10 +3,55 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avance2Progreso.Views.Students.StudentsHomePage"
              Title="StudentsHomePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Estudiante Bienvenido"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+
+    <VerticalStackLayout Background="Beige">
+        <StackLayout Background="#142e4e" Padding="15">
+            <Label Text="Estudiante" TextColor="White" HorizontalOptions="Center"/>
+        </StackLayout>
+
+        <Grid BackgroundColor="Beige">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <Image Source="https://www.udla.edu.ec/assets/logo_og.png" 
+           Grid.Row="0" Grid.Column="0" WidthRequest="300" HeightRequest="300" />
+            <Image Source="https://cdn.iconscout.com/icon/free/png-256/free-diners-club-internacional-675719.png?f=webp" 
+           Grid.Row="0" Grid.Column="1" WidthRequest="200" HeightRequest="200" />
+
+        </Grid>
+
+        <Label Text="Hola, [nombre del estudiante]" Margin="5" />
+
+        <Frame Background="White"
+               CornerRadius="15" 
+               Padding="10" 
+               Margin="20">
+            <Label Text="Los puntos que ha ganado" 
+                   HorizontalOptions="Start" />
+        </Frame>
+
+        <Frame Background="White"
+               CornerRadius="15" 
+               Padding="10" 
+               Margin="20">
+            <Label Text="Los concursos que ha participado" 
+                   HorizontalOptions="Start" />
+        </Frame>
+
+        <Frame Background="White"
+               CornerRadius="15" 
+               Padding="10" 
+               Margin="20">
+            <Label Text="El concurso en el que está participando" 
+                   HorizontalOptions="Start" />
+        </Frame>
+
     </VerticalStackLayout>
+
+
 </ContentPage>

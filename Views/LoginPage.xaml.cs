@@ -2,12 +2,13 @@ namespace Avance2Progreso.Views;
 using Avance2Progreso.Models;
 public partial class LoginPage : ContentPage
 {
+    private int _indiceCarrusel = 0;
     public LoginPage()
     {
         InitializeComponent();
         
     }
-
+ 
     private async void OnLoginClicked(object sender, EventArgs e)
     {
         string username = UsernameEntry.Text;
