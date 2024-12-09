@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Avance2Progreso.LoginPage"
+             x:Class="Avance2Progreso.Views.LoginPage"
              Title="LoginPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <StackLayout Padding="30" Spacing="15" VerticalOptions="Center">
+        <Entry x:Name="UsernameEntry" Placeholder="Usuario" />
+        <Entry x:Name="PasswordEntry" Placeholder="Contraseña" IsPassword="True" />
+        <Button Text="Iniciar sesión" Clicked="OnLoginClicked" />
+        <Label x:Name="ErrorMessage" TextColor="Red" IsVisible="False" />
+    </StackLayout>
 </ContentPage>

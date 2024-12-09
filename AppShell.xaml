@@ -4,9 +4,21 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Avance2Progreso"
+    xmlns:Views="clr-namespace:Avance2Progreso.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="Avance2Progreso">
 
-    
+    <TabBar>
+        <!-- Admin Role -->
+        <ShellContent x:Name="AdminInicio" Title="Inicio" ContentTemplate="{DataTemplate Views:Admin.AdminsHomePage}" Icon="admin_home_icon.png" />
+        <ShellContent x:Name="AdminAdmins" Title="Admins" ContentTemplate="{DataTemplate Views:Admin.Admins}" Icon="admins_icon.png" />
+        <ShellContent x:Name="AdminEstudiantes" Title="Estudiantes" ContentTemplate="{DataTemplate Views:Students.StudentsPage}" Icon="students_icon.png" />
+
+        <!-- Student Role -->
+        <ShellContent x:Name="StudentInicio" Title="Inicio" ContentTemplate="{DataTemplate Views:Students.StudentsHomePage}" Icon="student_home_icon.png" />
+
+        <!-- Default Role -->
+        <ShellContent x:Name="DefaultLogin" Title="Iniciar sesión" ContentTemplate="{DataTemplate Views:LoginPage}" Icon="login_icon.png" />
+    </TabBar>
 
 </Shell>

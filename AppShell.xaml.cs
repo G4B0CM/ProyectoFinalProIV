@@ -14,26 +14,14 @@ namespace Avance2Progreso
 
         private void ConfigureTabs(string role)
         {
-            // Limpiar Tabs existentes
-            Items.Clear();
+            // Configurar visibilidad según el rol
+            AdminInicio.IsVisible = role == "Admin";
+            AdminAdmins.IsVisible = role == "Admin";
+            AdminEstudiantes.IsVisible = role == "Admin";
 
-            if (role == "Admin")
-            {
-                // Tabs para Admin
-                Items.Add(CreateShellContent("Inicio", "admin_home_icon.png", typeof(AdminsHomePage)));
-                Items.Add(CreateShellContent("Admins", "admins_icon.png", typeof(Admins)));
-                Items.Add(CreateShellContent("Estudiantes", "students_icon.png", typeof(StudentsPage)));
-            }
-            else if (role == "Student")
-            {
-                // Tabs para Student
-                Items.Add(CreateShellContent("Inicio", "student_home_icon.png", typeof(StudentsHomePage)));
-            }
-            else
-            {
-                // Tabs para usuario no autenticado
-                Items.Add(CreateShellContent("Iniciar sesión", "login_icon.png", typeof(LoginPage)));
-            }
+            StudentInicio.IsVisible = role == "Student";
+
+            DefaultLogin.IsVisible = role == "Default";
         }
 
         private ShellContent CreateShellContent(string title, string icon, Type pageType)
