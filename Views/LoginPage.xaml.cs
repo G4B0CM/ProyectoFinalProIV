@@ -9,7 +9,7 @@ public partial class LoginPage : ContentPage
         
     }
  
-    private async void OnLoginClicked(object sender, EventArgs e)
+    /*private async void OnLoginClicked(object sender, EventArgs e)
     {
         string username = UsernameEntry.Text;
         string password = PasswordEntry.Text;
@@ -26,5 +26,5 @@ public partial class LoginPage : ContentPage
             ErrorMessage.Text = "Usuario o contraseña incorrectos";
             ErrorMessage.IsVisible = true;
         }
-    }
+    }*/
 }

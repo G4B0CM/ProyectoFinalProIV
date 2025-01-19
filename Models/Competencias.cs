@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -18,5 +19,6 @@ namespace Avance2Progreso.Models
         public string Categoria { get; set; }
         [Required(ErrorMessage ="Descripción Requerida")]
         public string Descripcion { get; set; }
+        public DateTime FechaCreación { get; set; } 
     }
 }
