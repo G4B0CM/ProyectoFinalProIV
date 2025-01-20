@@ -41,6 +41,25 @@
                     TextColor="Black"
                     CornerRadius="10" />
 
+            <!-- Botón para Listar Usuarios -->
+            <Button Text="Listar Usuarios"
+                    Command="{Binding GetAllPeopleCommand   }"
+                    BackgroundColor="LightGreen"
+                    TextColor="Black"
+                    CornerRadius="10" />
+
+            <!-- Lista de usuarios -->
+            <CollectionView ItemsSource="{Binding UsersList}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Username}" FontSize="18" />
+                            <Label Text="{Binding IsAdmin}" FontSize="14" TextColor="Gray" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
             <!-- Mensaje de estado -->
             <Label Text="{Binding StatusMessage}" 
                    FontAttributes="Italic" 

@@ -13,7 +13,7 @@ namespace Avance2Progreso
             // Obtener el rol del usuario (puedes obtenerlo desde almacenamiento seguro, API, etc.)
             string userRole = GetUserRole();
 
-            MainPage =new LoginPage();
+            MainPage =new Registro();
             UserRepo = repo;
         }
 
