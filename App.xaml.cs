@@ -1,26 +1,25 @@
-﻿
+﻿using Avance2Progreso.Repositories;
 namespace Avance2Progreso
 
 {
     using Views;
     public partial class App : Application
     {
-        public App()
+        public static UserRepository UserRepo { get; private set; }
+        public App(UserRepository repo)
         {
             InitializeComponent();
 
             // Obtener el rol del usuario (puedes obtenerlo desde almacenamiento seguro, API, etc.)
             string userRole = GetUserRole();
 
-            // Inicializar AppShell con el rol
-            MainPage = new LoginPage();
+            MainPage =new LoginPage();
+            UserRepo = repo;
         }
 
         private string GetUserRole()
         {
-            // Lógica para obtener el rol del usuario (Admin, Student, etc.)
-            // Por ejemplo, "Admin", "Student", o "" si no está autenticado.
-            return "Admin"; // Ejemplo estático, reemplazar con lógica real.
+            return "Admin";
         }
     }
 }

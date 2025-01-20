@@ -1,18 +1,14 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using SQLite;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Avance2Progreso.Models
 {
+    [SQLite.Table("Competencias")]
     public class Competencias
     {
-        [Key]
-        public string Id { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
         [Required(ErrorMessage ="Nombre Requerido")]
         public string Nombre { get; set; }
         [Required(ErrorMessage ="Categoria Requerida")]

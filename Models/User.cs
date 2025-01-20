@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SQLite;
 
 namespace Avance2Progreso.Models
 {
+    [SQLite.Table ("User")]
     public class User
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        [MaxLength(50)]
         public string Username { get; set; }
+        [MaxLength(50)]
         public string Password { get; set; }
-        public string Role { get; set; } 
+        public bool IsAdmin { get; set; }
     }
 }

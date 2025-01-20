@@ -15,12 +15,12 @@ public partial class CreateConcursoPage : ContentPage
         competencia = _administradorRepository.DevuelveCompetencia(); // Inicializamos un objeto vacío  
         BindingContext = competencia; // Se utiliza para vincular datos
     }
-
+    
     private async void OnGuardarCompetenciaClicked(object sender, EventArgs e)
     {
         Competencias competencia = new Competencias
         {
-            Id = editor_Id.Text,
+            Id = Convert.ToInt32(editor_Id.Text),
             Nombre = editor_Nombre.Text,
             Categoria = editor_Categoria.Text,
             Descripcion = editor_Descripcion.Text,

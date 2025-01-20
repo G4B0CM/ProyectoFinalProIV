@@ -1,0 +1,51 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Avance2Progreso.ViewModels"
+             x:Class="Avance2Progreso.Views.Registro"
+             Title="Registrar Usuario">
+    <ContentPage.BindingContext>
+        <vm:UserViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Registrar Usuario"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20" />
+
+            <!-- Campo para Nombre de Usuario -->
+            <Entry Placeholder="Nombre de Usuario"
+                   Text="{Binding Username}"
+                   Keyboard="Default"
+                   MaxLength="50" />
+
+            <!-- Campo para Contraseña -->
+            <Entry Placeholder="Contraseña"
+                   Text="{Binding Password}"
+                   IsPassword="True"
+                   Keyboard="Default"
+                   MaxLength="50" />
+
+            <!-- Interruptor para definir si es administrador -->
+            <HorizontalStackLayout>
+                <Label Text="¿Es administrador?" 
+                       VerticalOptions="Center" />
+                <Switch IsToggled="{Binding IsAdmin}" />
+            </HorizontalStackLayout>
+
+            <!-- Botón para Guardar -->
+            <Button Text="Guardar Usuario"
+                    Command="{Binding SaveCommand}" 
+                    BackgroundColor="LightBlue"
+                    TextColor="Black"
+                    CornerRadius="10" />
+
+            <!-- Mensaje de estado -->
+            <Label Text="{Binding StatusMessage}" 
+                   FontAttributes="Italic" 
+                   TextColor="Gray"
+                   HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

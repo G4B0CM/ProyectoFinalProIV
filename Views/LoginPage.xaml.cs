@@ -8,23 +8,16 @@ public partial class LoginPage : ContentPage
         InitializeComponent();
         
     }
- 
-    /*private async void OnLoginClicked(object sender, EventArgs e)
+
+    private async void Registrarse_Clicked(object sender, EventArgs e)
     {
-        string username = UsernameEntry.Text;
-        string password = PasswordEntry.Text;
-
-        var user = ListaUsuarios.Authenticate(username, password);
-
-        if (user != null)
+        try
         {
-            // Navegar al AppShell con el rol correspondiente
-            Application.Current.MainPage = new AppShell(user.Role);
+            await Navigation.PushAsync(new Registro());
         }
-        else
+        catch (Exception ex)
         {
-            ErrorMessage.Text = "Usuario o contraseña incorrectos";
-            ErrorMessage.IsVisible = true;
+            await DisplayAlert("Error", $"Excepción no controlada: {ex.Message}", "OK");
         }
-    }*/
+    }
 }
