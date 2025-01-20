@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Avance2Progreso.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
 using System;
@@ -24,10 +25,13 @@ namespace Avance2Progreso.ViewModels
         }
 
         public ICommand NavigateToRegistroCommand { get; }
+        public ICommand NavigateToAdmin { get; }
+        public event Action ShowAlert;
 
         public LoginPageViewModel()
         {
             NavigateToRegistroCommand = new RelayCommand(OnNavigateToRegistro);
+            NavigateToAdmin = new RelayCommand(OnNavigateToAdmin);
         }
 
         private async void OnNavigateToRegistro()
@@ -40,6 +44,18 @@ namespace Avance2Progreso.ViewModels
             {
                 Console.WriteLine(ex);
             }
+        }
+        private async void OnNavigateToAdmin()
+        {
+            try
+            {
+                await Shell.Current.GoToAsync("Admins");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
         }
     }
 }
