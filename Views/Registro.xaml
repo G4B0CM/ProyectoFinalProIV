@@ -70,9 +70,10 @@
             <!-- Botón para Listar Usuarios -->
             <Button Text="Listar Usuarios"
                     Command="{Binding GetAllPeopleCommand   }"
-                    BackgroundColor="LightGreen"
-                    TextColor="Black"
-                    CornerRadius="10" />
+                    BackgroundColor="#1d508f"
+                    TextColor="White"
+                    CornerRadius="10" 
+                    WidthRequest="200" HeightRequest="50"/>
 
             <!-- Lista de usuarios -->
             <CollectionView ItemsSource="{Binding UsersList}">
