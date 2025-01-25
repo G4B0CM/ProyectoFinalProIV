@@ -10,22 +10,9 @@ public partial class LoginPage : ContentPage
     public LoginPage()
     {
         InitializeComponent();
-        var ViewModel = new LoginPageViewModel();
-        ViewModel.ShowAlert += async () =>
-        {
-            await DisplayAlert("Alerta", "Introduzca las credenciales correctamente", "Ok");
-        };
+        BindingContext = new LoginPageViewModel();
+        
     }
 
-    private async void Registrarse_Clicked(object sender, EventArgs e)
-    {
-        try
-        {
-            await Navigation.PushAsync(new Registro());
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", $"Excepción no controlada: {ex.Message}", "OK");
-        }
-    }
+    
 }

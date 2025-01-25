@@ -57,7 +57,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\admin_home_icon.png" />
 	  <None Remove="Resources\Images\iconagregarestudiante.png" />
+	  <None Remove="Resources\Images\studens_icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
