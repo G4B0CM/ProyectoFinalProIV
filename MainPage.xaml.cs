@@ -1,25 +1,51 @@
-﻿namespace Avance2Progreso
+﻿using Avance2Progreso.Models;
+using Avance2Progreso.Services;
+using Avance2Progreso.ViewModels;
+
+namespace Avance2Progreso;
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+    private readonly UserService _userService;
+
+    public MainPage(UserService userService)
     {
-        int count = 0;
-
-        public MainPage()
-        {
-            InitializeComponent();
-        }
-
-        private void OnCounterClicked(object sender, EventArgs e)
-        {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
-        }
+        InitializeComponent();
+        _userService = userService;
     }
 
+    // Evento para agregar usuario
+    private async void OnCreateUserClicked(object sender, EventArgs e)
+    {
+        
+            UsernameEntry.Text = string.Empty;
+            PasswordEntry.Text = string.Empty;
+            IsAdminSwitch.IsToggled = false;
+        
+    }
+
+    // Evento para eliminar usuario
+    private async void OnDeleteUserClicked(object sender, EventArgs e)
+    {
+        
+                UserIdEntry.Text = string.Empty;
+            
+    }
+    private async void OnFetchUsersClicked(object sender, EventArgs e)
+    {
+        
+    }
+
+    private async void OnFetchUserByIdClicked(object sender, EventArgs e)
+    {
+        FetchUserIdEntry.Text = string.Empty;
+    }
+    private async void OnUpdateUserClicked(object sender, EventArgs e)
+    {
+       
+         UpdateUserIdEntry.Text = string.Empty;
+         UpdateUsernameEntry.Text = string.Empty;
+         UpdatePasswordEntry.Text = string.Empty;
+         UpdateIsAdminSwitch.IsToggled = false;
+       
+    }
 }

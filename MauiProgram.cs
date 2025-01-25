@@ -16,6 +16,14 @@ namespace Avance2Progreso
                 });
             string dbPath = FileAccessHelper.GetLocalFilePath("GabrielCalderon.db3");
             builder.Services.AddSingleton<UserRepository>(s => ActivatorUtilities.CreateInstance<UserRepository>(s, dbPath));
+            builder.Services.AddSingleton<HttpClient>(sp =>
+            {
+                return new HttpClient
+                {
+                    BaseAddress = new Uri("http://localhost:5206/api/Users")
+                };
+            });
+            builder.Services.AddSingleton<Services.UserService>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
