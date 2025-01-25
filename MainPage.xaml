@@ -11,7 +11,7 @@
         <VerticalStackLayout Padding="20" Spacing="20">
 
             <!-- Title -->
-            <Label Text="User Management" 
+            <Label Text="Manejo de Usuarios" 
                    FontSize="24" 
                    HorizontalOptions="Center" />
 
