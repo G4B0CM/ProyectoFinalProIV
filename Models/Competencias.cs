@@ -21,6 +21,6 @@ namespace Avance2Progreso.Models
         [SQLite.Column("Descripción")]
         public string Descripcion { get; set; }
         [SQLite.Column("FechaCreación")]
-        public DateTime FechaCreación { get; set; } 
+        public DateTime FechaCreacion { get; set; } 
     }
 }

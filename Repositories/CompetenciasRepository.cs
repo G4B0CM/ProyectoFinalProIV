@@ -21,19 +21,18 @@ namespace Avance2Progreso.Repositories
         private void Init()
         {
             if (conn != null)
-            {
                 return;
 
-                conn = new SQLiteConnection(_dbPath);
-                conn.CreateTable<Competencias>();
-            }
+            conn = new SQLiteConnection(_dbPath);
+            conn.CreateTable<Competencias>();
+            
 
         }
         public CompetenciasRepository(string dbPath)
         {
             _dbPath = dbPath;
         }
-        public async Task SaveCompetencia(string nombre, string categoria, string descripcion)
+        public async Task GuardarCompetencia(string nombre, string categoria, string descripcion)
         {
             try
             {
@@ -50,7 +49,7 @@ namespace Avance2Progreso.Repositories
                     Nombre = nombre,
                     Categoria = categoria,
                     Descripcion = descripcion,
-                    FechaCreación = ObtenerFecha()
+                    FechaCreacion = ObtenerFecha()
                 });
 
                 StatusMessage = $"Competencia {nombre} guardada correctamente";
@@ -60,7 +59,7 @@ namespace Avance2Progreso.Repositories
                 StatusMessage = $"Error al guardar la competencia. Detalles: {ex.Message}";
             }
         }
-        public async Task<List<Competencias>> GetAllCompetencias()
+        public async Task<List<Competencias>> ListarCompetencias()
         {
             try
             {
@@ -79,6 +78,44 @@ namespace Avance2Progreso.Repositories
             return DateTime.Now;
         }
 
+        public async Task<int> EliminarCompetencia(int id)
+        {
+            try
+            {
+                Init();
+                var competencia = conn.Table<Competencias>().FirstOrDefault(n => n.Id == id);
+                if (competencia != null)
+                {
+                    return conn.Delete(competencia);
+                }
+                StatusMessage = $"No se encontró una competencia con ID: {id}";
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error al eliminar la competencia. DEtalles: {ex.Message}";
+                return 0;
+            }
+        }
+
+        public async Task<Competencias> BuscarCompetenciaPorNombre(string nombre)
+        {
+            try
+            {
+                Init();
+                var competencia = conn.Table<Competencias>().FirstOrDefault(c => c.Nombre == nombre);
+                if(competencia == null)
+                {
+                    StatusMessage = $"No se encontro ninguna competencia con el nombre {nombre}";
+                }
+                return competencia;
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error al buscar la competencia. Detalles: {ex.Message}";
+                return null;
+            }
+        }
 
     }
 }
