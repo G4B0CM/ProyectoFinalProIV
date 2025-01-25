@@ -4,7 +4,7 @@
              x:Class="Avance2Progreso.Views.Admin.AdminsHomePage"
              Title="Administrador">
     
-    <VerticalStackLayout Background="Beige">
+    <VerticalStackLayout Background="White">
         <StackLayout Background="#142e4e" Padding="15">
             <Label Text="Administrador" TextColor="White" HorizontalOptions="Center"/>
         </StackLayout>
@@ -16,15 +16,15 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
- 
             </Grid.ColumnDefinitions>
+            
             <Image Source="https://dce-documents.s3.amazonaws.com/s3fs-public/styles/max_650x650/public/2023-04/diners-club-sphaera-tarjeta_0.png.webp?itok=Z9tu5e1y" 
                    Grid.Row="0" Grid.Column="0" WidthRequest="200" HeightRequest="200" />
             <Image Source="https://dce-documents.s3.amazonaws.com/s3fs-public/styles/max_650x650/public/2020-11/discover_udla.png.webp?itok=plEnjadz" 
                    Grid.Row="0" Grid.Column="1" WidthRequest="200" HeightRequest="200" />
 
         </Grid>
-        
+ 
        
         <Label Text="Hola, Nombre del Administrador" TextColor="Black" Margin="5"/>
         

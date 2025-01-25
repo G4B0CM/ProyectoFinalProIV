@@ -9,8 +9,8 @@
         <vm:LoginPageViewModel />
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="Auto, *">
-        <StackLayout Grid.Row="0">
+    <StackLayout>
+        <StackLayout>
             <!--Header-->
             <StackLayout Background="#142e4e" Padding="15">
                 <Label Text="Iniciar sesión" TextColor="White" HorizontalOptions="Center"/>
@@ -28,23 +28,25 @@
             </StackLayout>
         </StackLayout>
 
-        <StackLayout Grid.Row="1">
+
             <StackLayout Padding="30" Spacing="25" VerticalOptions="Center">
                 <Entry Text="{Binding Username}" Placeholder="Usuario" />
                 <Entry Text="{Binding Password}" Placeholder="Contraseña" IsPassword="True" />
 
                 <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center">
                     <Button Text="Iniciar sesión" BackgroundColor="#142e4e" TextColor="White"
-                            WidthRequest="200" HeightRequest="50"/>
+                            WidthRequest="200" HeightRequest="50"
+                            Command="{Binding NavigateToAdmin}"/>
 
                     <Button Text="Registrarse" BackgroundColor="#142e4e" TextColor="White"
                             WidthRequest="200" HeightRequest="50"
                             Command="{Binding NavigateToRegistroCommand}" />
-                </StackLayout>
-
+                
                 <Label x:Name="ErrorMessage" TextColor="Red" IsVisible="False" />
             </StackLayout>
-        </StackLayout>
-    </Grid>
+                
+            </StackLayout>
+
+    </StackLayout>
 
 </ContentPage>

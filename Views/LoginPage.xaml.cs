@@ -1,12 +1,20 @@
 namespace Avance2Progreso.Views;
+
+
 using Avance2Progreso.Models;
+using Avance2Progreso.ViewModels;
+
 public partial class LoginPage : ContentPage
 {
     private int _indiceCarrusel = 0;
     public LoginPage()
     {
         InitializeComponent();
-        
+        var ViewModel = new LoginPageViewModel();
+        ViewModel.ShowAlert += async () =>
+        {
+            await DisplayAlert("Alerta", "Introduzca las credenciales correctamente", "Ok");
+        };
     }
 
     private async void Registrarse_Clicked(object sender, EventArgs e)

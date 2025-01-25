@@ -7,6 +7,7 @@ public partial class AdminsHomePage : ContentPage
     public AdminsHomePage()
     {
         InitializeComponent();
+
     }
     
     private async void NavigateToCreateConcurso(object sender, EventArgs e)

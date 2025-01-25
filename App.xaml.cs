@@ -2,6 +2,7 @@
 namespace Avance2Progreso
 
 {
+    using Avance2Progreso.Views.Admin;
     using Views;
     public partial class App : Application
     {
@@ -13,7 +14,7 @@ namespace Avance2Progreso
             // Obtener el rol del usuario (puedes obtenerlo desde almacenamiento seguro, API, etc.)
             string userRole = GetUserRole();
 
-            MainPage =new Registro();
+            MainPage =new AdminsHomePage();
             UserRepo = repo;
         }
 
