@@ -6,11 +6,13 @@ namespace Avance2Progreso
 {
     public partial class AppShell : Shell
     {
-        public AppShell(string userRole)
+        public AppShell()
         {
             InitializeComponent();
-            ConfigureTabs(userRole);
+            ConfigureTabs("Admin");
             Routing.RegisterRoute(nameof(CreateConcursoPage), typeof(CreateConcursoPage));
+            Routing.RegisterRoute("registro", typeof(Registro));
+
         }
 
         private void ConfigureTabs(string role)

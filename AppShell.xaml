@@ -4,11 +4,12 @@
        x:Class="Avance2Progreso.AppShell"
        Title="App">
 
-    <!-- Registro Page: No está en la TabBar, solo es accesible por ruta -->
-    <ShellContent Route="registro" Title="Registro" ContentTemplate="{DataTemplate Views:Registro}" />
+
 
     <!-- Login Page: No está en la TabBar, solo es accesible por ruta -->
     <ShellContent Route="login" Title="Login" ContentTemplate="{DataTemplate Views:LoginPage}" />
+    <!-- Registro Page: No está en la TabBar, solo es accesible por ruta -->
+    <ShellContent Route="registro" Title="Registro" ContentTemplate="{DataTemplate Views:Registro}" />
 
     <!-- TabBar para Admin -->
     <TabBar x:Name="AdminTabs">

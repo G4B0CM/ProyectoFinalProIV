@@ -8,7 +8,7 @@
     <ContentPage.BindingContext>
         <vm:LoginPageViewModel />
     </ContentPage.BindingContext>
-
+    <ScrollView>
     <StackLayout>
         <StackLayout>
             <!--Header-->
@@ -48,5 +48,5 @@
             </StackLayout>
 
     </StackLayout>
-
+    </ScrollView>
 </ContentPage>

@@ -12,6 +12,7 @@ namespace Avance2Progreso.ViewModels
         private string _username;
         private string _password;
 
+        public INavigation Navigation {  get; set; }
         public string Username
         {
             get => _username;
@@ -28,17 +29,17 @@ namespace Avance2Progreso.ViewModels
         public ICommand NavigateToAdmin { get; }
         public event Action ShowAlert;
 
+        
         public LoginPageViewModel()
         {
             NavigateToRegistroCommand = new RelayCommand(OnNavigateToRegistro);
-            NavigateToAdmin = new RelayCommand(OnNavigateToAdmin);
         }
 
         private async void OnNavigateToRegistro()
         {
             try
             {
-                await Shell.Current.GoToAsync("//registro");
+                await Shell.Current.GoToAsync("registro");
             }
             catch (Exception ex)
             {
