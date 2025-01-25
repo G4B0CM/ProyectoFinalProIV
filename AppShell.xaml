@@ -10,6 +10,8 @@
     <ShellContent Route="login" Title="Login" ContentTemplate="{DataTemplate Views:LoginPage}" />
     <!-- Registro Page: No está en la TabBar, solo es accesible por ruta -->
     <ShellContent Route="registro" Title="Registro" ContentTemplate="{DataTemplate Views:Registro}" />
+    <ShellContent Route="Admins" Title="Admin Page" ContentTemplate="{DataTemplate Views:Admin.Admins}" />
+    <ShellContent Route="StudentsPage" Title="Students Page" ContentTemplate="{DataTemplate Views:Students.StudentsPage}" />
 
     <!-- TabBar para Admin -->
     <TabBar x:Name="AdminTabs">

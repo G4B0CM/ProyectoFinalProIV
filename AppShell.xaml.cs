@@ -12,6 +12,8 @@ namespace Avance2Progreso
             ConfigureTabs("Admin");
             Routing.RegisterRoute(nameof(CreateConcursoPage), typeof(CreateConcursoPage));
             Routing.RegisterRoute("registro", typeof(Registro));
+            Routing.RegisterRoute("Admins", typeof(Admins));
+            Routing.RegisterRoute("StudentsPage", typeof(StudentsPage));
 
         }
 
