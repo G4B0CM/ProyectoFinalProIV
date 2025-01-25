@@ -12,7 +12,6 @@ namespace Avance2Progreso.Repositories
     {
         string _dbPath;
 
-
         public string StatusMessage { get; set; }
 
         private SQLiteConnection conn;
