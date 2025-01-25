@@ -2,8 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avance2Progreso.MainPage"
+             xmlns:vm="clr-namespace:Avance2Progreso.ViewModels"
              Title="Administrar Usuarios">
-
+    <ContentPage.BindingContext>
+        <vm:AdministrarUsuariosViewModel/>
+    </ContentPage.BindingContext>
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
 
@@ -17,15 +20,16 @@
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Add User" FontSize="18" FontAttributes="Bold" />
 
-                    <Entry x:Name="UsernameEntry" Placeholder="Enter Username" />
-                    <Entry x:Name="PasswordEntry" Placeholder="Enter Password" IsPassword="True" />
+                    <Entry x:Name="UsernameEntry" Text="{Binding Username}" Placeholder="Enter Username" />
+                    <Entry x:Name="PasswordEntry" Text="{Binding Password}" Placeholder="Enter Password" IsPassword="True" />
 
                     <HorizontalStackLayout Spacing="10">
                         <Label Text="Is Admin:" VerticalOptions="Center" />
-                        <Switch x:Name="IsAdminSwitch" />
+                        <Switch x:Name="IsAdminSwitch" IsToggled="{Binding IsAdmin}" />
                     </HorizontalStackLayout>
 
                     <Button Text="Add User"
+                            Command="{Binding SaveCommand}"
                             BackgroundColor="Green"
                             TextColor="White"
                             Clicked="OnCreateUserClicked" />
@@ -37,9 +41,10 @@
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Delete User" FontSize="18" FontAttributes="Bold" />
 
-                    <Entry x:Name="UserIdEntry" Placeholder="Enter User ID to Delete" Keyboard="Numeric" />
+                    <Entry x:Name="UserIdEntry" Text="{Binding Id}" Placeholder="Enter User ID to Delete" Keyboard="Numeric" />
 
                     <Button Text="Delete User"
+                            Command="{Binding DeletePersonCommand}"
                             BackgroundColor="Red"
                             TextColor="White"
                             Clicked="OnDeleteUserClicked" />
@@ -51,12 +56,13 @@
                     <Label Text="Get All Users" FontSize="18" FontAttributes="Bold" />
 
                     <Button Text="Fetch Users"
-                BackgroundColor="Blue"
-                TextColor="White"
-                Clicked="OnFetchUsersClicked" />
+                            BackgroundColor="Blue"
+                            TextColor="White"
+                            Clicked="OnFetchUsersClicked"
+                            Command="{Binding GetAllPeopleCommand}"/>
 
                     <!-- Lista de usuarios -->
-                    <CollectionView x:Name="UsersCollection" ItemsSource="{Binding Users}">
+                    <CollectionView x:Name="UsersCollection" ItemsSource="{Binding UsersList}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout Orientation="Horizontal" Padding="5">
@@ -74,14 +80,15 @@
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Get User by ID" FontSize="18" FontAttributes="Bold" />
 
-                    <Entry x:Name="FetchUserIdEntry" Placeholder="Enter User ID" Keyboard="Numeric" />
+                    <Entry x:Name="FetchUserIdEntry" Text="{Binding Id}" Placeholder="Enter User ID" Keyboard="Numeric" />
 
                     <Button Text="Fetch User"
-                BackgroundColor="Blue"
-                TextColor="White"
-                Clicked="OnFetchUserByIdClicked" />
+                            BackgroundColor="Blue"
+                            TextColor="White"
+                            Command="{Binding ObtenerUnaPersonaCommand}"
+                            Clicked="OnFetchUserByIdClicked" />
 
-                    <Label x:Name="FetchedUserLabel" Text="" FontSize="14" TextColor="Gray" />
+                    <Label x:Name="FetchedUserLabel" Text="{Binding Username}" FontSize="14" TextColor="Gray" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -89,9 +96,9 @@
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Update User" FontSize="18" FontAttributes="Bold" />
 
-                    <Entry x:Name="UpdateUserIdEntry" Placeholder="Enter User ID" Keyboard="Numeric" />
-                    <Entry x:Name="UpdateUsernameEntry" Placeholder="Enter New Username" />
-                    <Entry x:Name="UpdatePasswordEntry" Placeholder="Enter New Password" IsPassword="True" />
+                    <Entry x:Name="UpdateUserIdEntry" Text="{Binding Id}" Placeholder="Enter User ID" Keyboard="Numeric" />
+                    <Entry x:Name="UpdateUsernameEntry" Text="{Binding Username}" Placeholder="Enter New Username" />
+                    <Entry x:Name="UpdatePasswordEntry" Text="{Binding Password}" Placeholder="Enter New Password" IsPassword="True" />
 
                     <HorizontalStackLayout Spacing="10">
                         <Label Text="Is Admin:" VerticalOptions="Center" />
@@ -99,8 +106,9 @@
                     </HorizontalStackLayout>
 
                     <Button Text="Update User"
-                BackgroundColor="Orange"
-                TextColor="White"
+                            BackgroundColor="Orange"
+                            TextColor="White"
+                            Command="{Binding ActualizarPersonaCommand}"
                 Clicked="OnUpdateUserClicked" />
                 </VerticalStackLayout>
             </Frame>
