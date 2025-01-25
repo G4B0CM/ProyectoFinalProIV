@@ -15,7 +15,9 @@ namespace Avance2Progreso
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
             string dbPath = FileAccessHelper.GetLocalFilePath("GabrielCalderon.db3");
+            
             builder.Services.AddSingleton<UserRepository>(s => ActivatorUtilities.CreateInstance<UserRepository>(s, dbPath));
+            builder.Services.AddSingleton<CompetenciasRepository>(a => ActivatorUtilities.CreateInstance<CompetenciasRepository>(a, dbPath));
             builder.Services.AddSingleton<HttpClient>(sp =>
             {
                 return new HttpClient
@@ -24,6 +26,7 @@ namespace Avance2Progreso
                 };
             });
             builder.Services.AddSingleton<Services.UserService>();
+            
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

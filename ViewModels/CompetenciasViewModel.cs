@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Avance2Progreso.Models;
 using Avance2Progreso.Repositories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Avance2Progreso.ViewModels;
 using CommunityToolkit.Mvvm.Input;
-using System.Text.Json;
+
+
 
 namespace Avance2Progreso.ViewModels
 {
@@ -109,15 +105,70 @@ namespace Avance2Progreso.ViewModels
             _competencia = new Competencias();
             Competencias = new ObservableCollection<Competencias>();
 
-            GuardarCommand = new AsyncRelayCommand();
-            ListarCommand = new AsyncRelayCommand();
+            GuardarCommand = new AsyncRelayCommand(Guardar);
+            ListarCommand = new AsyncRelayCommand(ListarCompetencias);
             EliminarCommand = new AsyncRelayCommand();
             BuscarPorNombreCommand = new RelayCommand();
 
         }
+        private async Task Guardar()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(_competencia.Nombre))
+                {
+                    throw new Exception("El nombre no puede estar vacío.");
+                }
+                if (string.IsNullOrEmpty(_competencia.Categoria))
+                {
+                    throw new Exception("El nombre no puede estar vacío.");
+                }
+                if (string.IsNullOrEmpty(_competencia.Descripcion))
+                {
+                    throw new Exception("El nombre no puede estar vacío.");
+                }
+
+                _competenciaRepository.GuardarCompetencia(_competencia.Nombre, _competencia.Categoria,_competencia.Descripcion);
+
+                StatusMessage = $"Competencia {_competencia.Nombre} guardada exitosamente.";
+                await Shell.Current.GoToAsync($"..?saved={_competencia.Nombre}");
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error al guardar la competencia. Detalles: {ex.Message}";
+            }
+        }
+
+        private async Task ListarCompetencias()
+        {
+            try
+            {
+                var competencias = await _competenciaRepository.ListarCompetencias();
+                Competencias.Clear();
+                foreach (var competencia in competencias)
+                {
+                    Competencias.Add(competencia);
+                }
+                StatusMessage = $"Las competencias se cargaron correctamente";
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error al cargar las competencias. Detalles: {ex.Message}";
+            }
+        }
 
 
+        private async Task EliminarCompetencias(int id)
+        {
+            try
+            {
+                
+            }
+            catch
+            {
 
+            }
+        }
 
     }
 }
