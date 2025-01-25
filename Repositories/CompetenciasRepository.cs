@@ -49,7 +49,7 @@ namespace Avance2Progreso.Repositories
                     Nombre = nombre,
                     Categoria = categoria,
                     Descripcion = descripcion,
-                    FechaCreación = ObtenerFecha()
+                    FechaCreacion = ObtenerFecha()
                 });
 
                 StatusMessage = $"Competencia {nombre} guardada correctamente";
