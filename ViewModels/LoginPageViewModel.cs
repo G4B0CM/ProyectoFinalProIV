@@ -100,29 +100,37 @@ namespace Avance2Progreso.ViewModels
                 }
 
                 // Verifica si la contraseña ingresada coincide con la del usuario
-                if (usuarioCoincidente.Password == Password) // Asegúrate de que la propiedad Password existe
+                if (usuarioCoincidente.Password == Password)
                 {
+                    bool isAdmin = usuarioCoincidente.IsAdmin;
+
+                    // Obtener una referencia a AppShell directamente
+                    var appShell = (AppShell)Shell.Current;
+
+                    // Cambiar las Tabs visibles dependiendo de si el usuario es admin o no
+                    appShell.SetUserTabs(isAdmin);
+
                     if (usuarioCoincidente.IsAdmin)
                     {
-                        await Shell.Current.GoToAsync("//Admins");
+                        await Shell.Current.GoToAsync("//AdminsHomePage");
                     }
                     else
-                        await Shell.Current.GoToAsync("//StudentsPage");
+                    {
+                        await Shell.Current.GoToAsync("//StudentsHomePage");
+                    }
                 }
                 else
                 {
-                    // La contraseña no coincide
                     await Shell.Current.DisplayAlert("Alerta", $"Contraseña incorrecta para {Username}", "OK");
                 }
-
             }
             catch (Exception ex)
             {
+                // Captura el error y muestra más detalles
                 Console.WriteLine($"Error: {ex.Message}");
                 await Shell.Current.DisplayAlert("Error", "Ocurrió un problema al intentar iniciar sesión", "OK");
             }
-
         }
-        
+
     }
 }

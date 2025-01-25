@@ -6,26 +6,21 @@
 
 
 
-    <!-- Login Page: No está en la TabBar, solo es accesible por ruta -->
+    <!-- Página de Login (por defecto, accesible por ruta) -->
     <ShellContent Route="login" Title="Login" ContentTemplate="{DataTemplate Views:LoginPage}" />
-    <!-- Registro Page: No está en la TabBar, solo es accesible por ruta -->
     <ShellContent Route="registro" Title="Registro" ContentTemplate="{DataTemplate Views:Registro}" />
-    <ShellContent Route="Admins" Title="Admin Page" ContentTemplate="{DataTemplate Views:Admin.Admins}" />
-    <ShellContent Route="StudentsPage" Title="Students Page" ContentTemplate="{DataTemplate Views:Students.StudentsPage}" />
-
+    
+    
     <!-- TabBar para Admin -->
-    <TabBar x:Name="AdminTabs">
-        <ShellContent x:Name="AdminInicio" Title="Inicio" ContentTemplate="{DataTemplate Views:Admin.AdminsHomePage}" Icon="admin_home_icon.png" />
-        <ShellContent x:Name="AdminAdmins" Title="Admins" ContentTemplate="{DataTemplate Views:Admin.Admins}" Icon="admins_icon.png" />
-        <ShellContent x:Name="AdminEstudiantes" Title="Estudiantes" ContentTemplate="{DataTemplate Views:Students.StudentsPage}" Icon="students_icon.png" />
+    <TabBar x:Name="AdminTabs" IsVisible="False">
+        <ShellContent x:Name="AdminInicio" Title="Inicio" Route ="AdminsHomePage" ContentTemplate="{DataTemplate Views:Admin.AdminsHomePage}" Icon="admin_home_icon.png" />
+        <ShellContent x:Name="AdminAdmins" Title="Admins" Route ="Admins" ContentTemplate="{DataTemplate Views:Admin.Admins}" Icon="admins_icon.png" />
+        <ShellContent x:Name="AdminEstudiantes" Title="Estudiantes" Route ="StudentsPage" ContentTemplate="{DataTemplate Views:Students.StudentsPage}" Icon="students_icon.png" />
     </TabBar>
 
     <!-- TabBar para Student -->
-    <TabBar x:Name="StudentTabs">
-        <ShellContent x:Name="StudentInicio" Title="Inicio" ContentTemplate="{DataTemplate Views:Students.StudentsHomePage}" Icon="student_home_icon.png" />
-        
+    <TabBar x:Name="StudentTabs" IsVisible="False">
+        <ShellContent x:Name="StudentInicio" Title="Inicio" Route ="StudentsHomePage" ContentTemplate="{DataTemplate Views:Students.StudentsHomePage}" Icon="student_home_icon.png" />
     </TabBar>
-
-    <ShellContent x:Name="DefaultLogin" Title="Iniciar sesión" ContentTemplate="{DataTemplate Views:LoginPage}" Icon="login_icon.png" />
 
 </Shell>

@@ -9,34 +9,28 @@ namespace Avance2Progreso
         public AppShell()
         {
             InitializeComponent();
-            ConfigureTabs("Admin");
-            Routing.RegisterRoute(nameof(CreateConcursoPage), typeof(CreateConcursoPage));
             Routing.RegisterRoute("registro", typeof(Registro));
-            Routing.RegisterRoute("Admins", typeof(Admins));
-            Routing.RegisterRoute("StudentsPage", typeof(StudentsPage));
+            Routing.RegisterRoute("AdminsHomePage", typeof(Admins));
+            Routing.RegisterRoute("StudentsHomePage", typeof(StudentsPage));
+            AdminTabs.IsVisible = false;
+            StudentTabs.IsVisible = false;
 
         }
 
-        private void ConfigureTabs(string role)
+        public void SetUserTabs(bool isAdmin)
         {
-            // Configurar visibilidad según el rol
-            AdminInicio.IsVisible = role == "Admin";
-            AdminAdmins.IsVisible = role == "Admin";
-            AdminEstudiantes.IsVisible = role == "Admin";
 
-            StudentInicio.IsVisible = role == "Student";
-
-            DefaultLogin.IsVisible = role == "Default";
-        }
-
-        private ShellContent CreateShellContent(string title, string icon, Type pageType)
-        {
-            return new ShellContent
+            if (isAdmin)
             {
-                Title = title,
-                Icon = icon,
-                ContentTemplate = new DataTemplate(pageType)
-            };
+                AdminTabs.IsVisible = true;
+                StudentTabs.IsVisible = false;
+            }
+            else
+            {
+                AdminTabs.IsVisible = false;
+                StudentTabs.IsVisible = true;
+            }
         }
+    
     }
 }

@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Avance2Progreso.ViewModels"
              x:Class="Avance2Progreso.Views.Students.StudentsPage"
              Title="StudentsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Lista de estudiantes"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage.BindingContext>
+        <vm:AdministrarUsuariosViewModel/>
+    </ContentPage.BindingContext>
+            <ScrollView>
+        <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Get All Users" FontSize="18" FontAttributes="Bold" />
+
+                <Button Text="Listar Estudiantes"
+                BackgroundColor="Blue"
+                TextColor="White"
+                Command="{Binding GetAllPeopleCommand}"/>
+
+                <!-- Lista de usuarios -->
+                <CollectionView x:Name="UsersCollection" ItemsSource="{Binding UsersList}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" Padding="5">
+                                <Label Text="{Binding Id}" WidthRequest="50" />
+                                <Label Text="{Binding Username}" />
+                                <Label Text="{Binding IsAdmin}" HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </Frame>
+    </ScrollView>
 </ContentPage>

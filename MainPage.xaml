@@ -51,30 +51,7 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Get All Users" FontSize="18" FontAttributes="Bold" />
-
-                    <Button Text="Fetch Users"
-                            BackgroundColor="Blue"
-                            TextColor="White"
-                            Clicked="OnFetchUsersClicked"
-                            Command="{Binding GetAllPeopleCommand}"/>
-
-                    <!-- Lista de usuarios -->
-                    <CollectionView x:Name="UsersCollection" ItemsSource="{Binding UsersList}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout Orientation="Horizontal" Padding="5">
-                                    <Label Text="{Binding Id}" WidthRequest="50" />
-                                    <Label Text="{Binding Username}" />
-                                    <Label Text="{Binding IsAdmin}" HorizontalOptions="EndAndExpand" />
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </VerticalStackLayout>
-            </Frame>
+            
 
             <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
                 <VerticalStackLayout Spacing="10">
