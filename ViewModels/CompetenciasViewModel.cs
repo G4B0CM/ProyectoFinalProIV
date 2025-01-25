@@ -39,7 +39,7 @@ namespace Avance2Progreso.ViewModels
                     OnPropertyChanged(nameof(_competencia.Nombre));
                     OnPropertyChanged(nameof(_competencia.Categoria));
                     OnPropertyChanged(nameof(_competencia.Descripcion));
-                    //OnPropertyChanged(nameof(_competencia.FechaCreacion));
+                    OnPropertyChanged(nameof(_competencia.FechaCreacion));
                 }
             }
         }
@@ -108,12 +108,11 @@ namespace Avance2Progreso.ViewModels
             _competenciaRepository = new CompetenciasRepository(dbPath);
             _competencia = new Competencias();
             Competencias = new ObservableCollection<Competencias>();
-            /*
+
             GuardarCommand = new AsyncRelayCommand();
             ListarCommand = new AsyncRelayCommand();
             EliminarCommand = new AsyncRelayCommand();
             BuscarPorNombreCommand = new RelayCommand();
-            */
 
         }
 
