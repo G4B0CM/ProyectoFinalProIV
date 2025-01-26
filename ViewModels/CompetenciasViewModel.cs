@@ -107,8 +107,8 @@ namespace Avance2Progreso.ViewModels
 
             GuardarCommand = new AsyncRelayCommand(Guardar);
             ListarCommand = new AsyncRelayCommand(ListarCompetencias);
-            EliminarCommand = new AsyncRelayCommand();
-            BuscarPorNombreCommand = new RelayCommand();
+            EliminarCommand = new AsyncRelayCommand(EliminarCompetencias);
+            //BuscarPorNombreCommand = new RelayCommand();
 
         }
         private async Task Guardar()
@@ -130,8 +130,7 @@ namespace Avance2Progreso.ViewModels
 
                 _competenciaRepository.GuardarCompetencia(_competencia.Nombre, _competencia.Categoria,_competencia.Descripcion);
 
-                StatusMessage = $"Competencia {_competencia.Nombre} guardada exitosamente.";
-                await Shell.Current.GoToAsync($"..?saved={_competencia.Nombre}");
+                await Shell.Current.DisplayAlert("Alerta", $"Competencia {_competencia.Nombre} guardada exitosamente.","OK");
             }
             catch (Exception ex)
             {
@@ -158,15 +157,22 @@ namespace Avance2Progreso.ViewModels
         }
 
 
-        private async Task EliminarCompetencias(int id)
+        private async Task EliminarCompetencias()
         {
             try
             {
-                
-            }
-            catch
-            {
+                if (Id <= 0 )
+                    throw new Exception("Usuario no válido para eliminar.");
 
+                _competenciaRepository.EliminarCompetencia(Id);
+                var competencia = Competencias.First(Competencia => Competencia.Id == Id);
+                Competencias.Remove(competencia);
+
+                StatusMessage = $"Usuario {competencia.Nombre} eliminado exitosamente.";
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error al eliminar el usuario: {ex.Message}";
             }
         }
 

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Avance2Progreso.ViewModels"
+             x:Class="Avance2Progreso.Views.Admin.CompetenciasPage"
+             Title="CompetenciasPage">
+    <ContentPage.BindingContext>
+        <vm:CompetenciasViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Añadir Competencias" FontSize="18" FontAttributes="Bold" />
+
+                <Entry x:Name="NombreEntry" Text="{Binding Nombre}" Placeholder="Ingresa el nombre " />
+                <Entry x:Name="CatEntry" Text="{Binding Categoria}" Placeholder="Ingresa la categoría "/>
+                <Entry x:Name="DescEntry" Text="{Binding Descripcion}" Placeholder="Ingresa la Descripción" />
+                <DatePicker x:Name="DateEntry" 
+                            Date="{Binding FechaCreacion}" 
+                            Format="D" />       
+
+                <Button Text="Agregar Competencia"
+                        Command="{Binding GuardarCommand}"
+                        BackgroundColor="Green"
+                        TextColor="White"/>
+                <Button Text="Listar Competencias"
+                        Command="{Binding ListarCommand}"
+                        BackgroundColor="Green"
+                        TextColor="White"/>
+
+                <CollectionView x:Name="peopleList" 
+                        Grid.Row="4"
+                        ItemsSource="{Binding Competencias}"
+                        HeightRequest="200"
+                        VerticalScrollBarVisibility="Default"
+                        SelectionMode="Single"
+                       >
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="3" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate >
+                        <DataTemplate>
+                            <Frame BorderColor="DarkCyan" CornerRadius="10" Padding="20" Margin="5" BackgroundColor="DarkCyan">
+                                <HorizontalStackLayout>
+                                    <Label Text="{Binding Id}"
+                           FontSize="Small"
+                           HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                           WidthRequest="30"/>
+                                    <Label Text="{Binding Nombre}"
+                           FontSize="Medium"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                                    <Label Text="{Binding Categoria}"
+                                            FontSize="Medium"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center" />
+                                    <Label Text="{Binding Descripcion}"
+                                            FontSize="Medium"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center" />
+                                    <Label Text="{Binding FechaCreacion}"
+                                            FontSize="Medium"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center" />
+
+                                </HorizontalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+          
+        </Frame>
+        
+    </ScrollView>
+</ContentPage>

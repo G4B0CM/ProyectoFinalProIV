@@ -16,6 +16,7 @@
         <ShellContent x:Name="AdminInicio" Title="Inicio" Route ="AdminsHomePage" ContentTemplate="{DataTemplate Views:Admin.AdminsHomePage}" Icon="admin_home_icon.png" />
         <ShellContent x:Name="AdminAdmins" Title="Admins" Route ="Admins" ContentTemplate="{DataTemplate Views:Admin.Admins}" Icon="admins_icon.png" />
         <ShellContent x:Name="AdminEstudiantes" Title="Estudiantes" Route ="StudentsPage" ContentTemplate="{DataTemplate Views:Students.StudentsPage}" Icon="students_icon.png" />
+        <ShellContent x:Name="AdminCompetencias" Title="Competencias" Route ="CompetenciasPage" ContentTemplate="{DataTemplate Views:Admin.CompetenciasPage}" Icon="students_icon.png" />
     </TabBar>
 
     <!-- TabBar para Student -->
