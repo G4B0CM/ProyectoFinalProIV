@@ -23,6 +23,7 @@ namespace Avance2Progreso.ViewModels
         public ICommand DeletePersonCommand { get; }
         public ICommand ObtenerUnaPersonaCommand {  get; }
         public ICommand ActualizarPersonaCommand { get; }
+        public ICommand RegresarLoginCommand { get; }
 
         private Models.User _user;
 
@@ -119,6 +120,7 @@ namespace Avance2Progreso.ViewModels
             DeletePersonCommand = new AsyncRelayCommand(Eliminar);
             ObtenerUnaPersonaCommand = new AsyncRelayCommand(CargarUnaPersona);
             ActualizarPersonaCommand = new AsyncRelayCommand(ActualizarPersona);
+            RegresarLoginCommand = new AsyncRelayCommand(IrALogin);
         }
 
         private async Task Save()
@@ -225,6 +227,17 @@ namespace Avance2Progreso.ViewModels
                 {
                     await Application.Current.MainPage.DisplayAlert("Error", "Please enter a valid User ID.", "OK");
                 }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+            }
+        }
+        private async Task IrALogin()
+        {
+            try
+            {
+                await Shell.Current.GoToAsync("//login");
             }
             catch (Exception ex)
             {

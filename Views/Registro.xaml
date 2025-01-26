@@ -4,7 +4,7 @@
              x:Class="Avance2Progreso.Views.Registro"
              Title="Registrar Usuario">
     <ContentPage.BindingContext>
-        <vm:UserViewModel />
+        <vm:AdministrarUsuariosViewModel />
     </ContentPage.BindingContext>
 
     <ScrollView>
@@ -68,8 +68,8 @@
                     WidthRequest="200" HeightRequest="50"/>
 
             <!-- Botón para Listar Usuarios -->
-            <Button Text="Listar Usuarios"
-                    Command="{Binding GetAllPeopleCommand   }"
+            <Button Text="Regresar a Inicio"
+                    Command="{Binding RegresarLoginCommand   }"
                     BackgroundColor="#1d508f"
                     TextColor="White"
                     CornerRadius="10" 

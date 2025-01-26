@@ -11,16 +11,10 @@ namespace Avance2Progreso
         {
             InitializeComponent();
 
-            // Obtener el rol del usuario (puedes obtenerlo desde almacenamiento seguro, API, etc.)
-            string userRole = GetUserRole();
 
-            MainPage =new CompetenciasPage();
+            MainPage =new AppShell();
             UserRepo = repo;
         }
 
-        private string GetUserRole()
-        {
-            return "Admin";
-        }
     }
 }
