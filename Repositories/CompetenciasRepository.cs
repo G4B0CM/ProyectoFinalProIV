@@ -117,5 +117,35 @@ namespace Avance2Progreso.Repositories
             }
         }
 
+        public void EditarCompetencia(string nombre, string categoria, string descripcion)
+        {
+            int result = 0;
+            try
+            {
+                Init();
+
+                if (nombre != null)
+                    throw new Exception("Se requiere el parametro de nombre.");
+
+                // Buscar el usuario por ID
+                var competencia = conn.Table<Competencias>().FirstOrDefault(p => p.Nombre == nombre);
+
+                if (competencia == null)
+                    throw new Exception($"Usuario con Nombre {nombre} no encontrado.");
+
+                competencia.Nombre = nombre ?? competencia.Nombre; //Profe el ?? indica que si es null se mantiene
+                competencia.Categoria = categoria ?? competencia.Categoria; //el valor existente
+                competencia.Descripcion = descripcion ?? competencia.Descripcion;
+
+                result = conn.Update(competencia);
+
+                StatusMessage = string.Format("{0} registro(s) actualizado(s) (Nombre: {1})", result, nombre);
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Error al actualizar el usuario con Nombre {0}. Error: {1}", nombre, ex.Message);
+            }
+        }
+
     }
 }

@@ -24,7 +24,8 @@ namespace Avance2Progreso.ViewModels
         public ICommand ListarCommand { get; set; }
         public ICommand EliminarCommand { get; set; }
         public ICommand BuscarPorNombreCommand { get; set; }
-        
+        public ICommand EditarCompetenciaCommand { get; set; }
+
 
 
         public Competencias Competencia
@@ -114,9 +115,8 @@ namespace Avance2Progreso.ViewModels
             GuardarCommand = new AsyncRelayCommand(Guardar);
             ListarCommand = new AsyncRelayCommand(ListarCompetencias);
             EliminarCommand = new AsyncRelayCommand(EliminarCompetencias);
-            //BuscarPorNombreCommand = new RelayCommand();
-            
-
+            BuscarPorNombreCommand = new AsyncRelayCommand(BuscarCompetenciaPorNombre);
+            EditarCompetenciaCommand = new AsyncRelayCommand(EditarCompetencia);
         }
         private async Task Guardar()
         {
@@ -183,6 +183,93 @@ namespace Avance2Progreso.ViewModels
             }
         }
        
+
+        private async Task BuscarCompetenciaPorNombre()
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(Nombre))
+                {
+                    await Shell.Current.DisplayAlert("Error", "Ingrese un nombre para buscar.", "OK");
+                    return;
+                }
+
+                // Llama al repositorio para buscar la competencia
+                var competenciaEncontrada = await _competenciaRepository.BuscarCompetenciaPorNombre(Nombre);
+
+                if (competenciaEncontrada != null)
+                {
+                    Competencia = competenciaEncontrada;
+
+                    // Muestra los detalles de la competencia encontrada
+                    await Shell.Current.DisplayAlert(
+                        "Competencia Encontrada",
+                        $"Nombre: {Competencia.Nombre}\n" +
+                        $"Categoría: {Competencia.Categoria}\n" +
+                        $"Descripción: {Competencia.Descripcion}\n" +
+                        $"Fecha de Creación: {Competencia.FechaCreacion:dd/MM/yyyy}",
+                        "OK"
+                    );
+
+                    // Actualiza la lista para mostrar solo la competencia encontrada
+                    Competencias.Clear();
+                    Competencias.Add(competenciaEncontrada);
+
+                    StatusMessage = "Competencia encontrada correctamente.";
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Aviso", "No se encontró una competencia con ese nombre.", "OK");
+                    StatusMessage = "No se encontró la competencia.";
+                }
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error al buscar la competencia: {ex.Message}";
+                await Shell.Current.DisplayAlert("Error", StatusMessage, "OK");
+            }
+        }
+
+        private async Task EditarCompetencia()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(Nombre))
+                {
+                    throw new Exception("El nombre no puede estar vacío.");
+                }
+
+                if (string.IsNullOrEmpty(Categoria))
+                {
+                    throw new Exception("La categoría no puede estar vacía.");
+                }
+
+                if (string.IsNullOrEmpty(Descripcion))
+                {
+                    throw new Exception("La descripción no puede estar vacía.");
+                }
+
+                // Llama al método del repositorio para editar la competencia
+                _competenciaRepository.EditarCompetencia(Nombre, Categoria, Descripcion);
+
+                // Actualiza la lista para reflejar los cambios
+                var competencia = Competencias.FirstOrDefault(c => c.Nombre == Nombre);
+                if (competencia != null)
+                {
+                    competencia.Nombre = Nombre;
+                    competencia.Categoria = Categoria;
+                    competencia.Descripcion = Descripcion;
+                }
+
+                StatusMessage = $"Competencia '{Nombre}' actualizada correctamente.";
+                await Shell.Current.DisplayAlert("Éxito", StatusMessage, "OK");
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error al editar la competencia: {ex.Message}";
+                await Shell.Current.DisplayAlert("Error", StatusMessage, "OK");
+            }
+        }
 
     }
 }
