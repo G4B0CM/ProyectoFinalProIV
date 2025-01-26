@@ -167,5 +167,32 @@ namespace Avance2Progreso.ViewModels
                     UsersList.Remove(matchedUser);
             }
         }
+        public async Task InscribirseEnCompetencia(int competenciaId)
+        {
+            try
+            {
+                if (_user.IsAdmin)
+                {
+                    StatusMessage = "Los administradores no pueden inscribirse en competencias.";
+                    return;
+                }
+
+                if (_user.CompetenciasInscritas.Contains(competenciaId))
+                {
+                    StatusMessage = "Ya estás inscrito en esta competencia.";
+                    return;
+                }
+
+                _user.CompetenciasInscritas.Add(competenciaId);
+                StatusMessage = "Inscripción exitosa.";
+
+                // Aquí se guardaría la actualización en SQLite o se enviaría a la API en el futuro
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error al inscribirse: {ex.Message}";
+            }
+        }
+
     }
 }
