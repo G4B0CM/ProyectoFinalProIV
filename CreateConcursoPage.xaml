@@ -2,7 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avance2Progreso.CreateConcursoPage"
+             xmlns:vm="clr-namespace:Avance2Progreso.ViewModels"
              Title="CreateConcursoPage">
+    
+    <ContentPage.BindingContext>
+        <vm:CompetenciasViewModel />
+    </ContentPage.BindingContext>
+
     <ScrollView>
         <StackLayout Padding="20" Spacing="15">
             <!-- Encabezado -->
@@ -20,11 +26,7 @@
                        VerticalOptions="Center"
                        WidthRequest="150"
                        HeightRequest="150" />
-                <Image Source="icondiners.png"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center"
-                       WidthRequest="150"
-                       HeightRequest="150" />
+                
             </HorizontalStackLayout>
 
             <!-- Formulario -->
@@ -44,24 +46,29 @@
 
             <Button Text="Guardar Competencia"
                     Clicked="OnGuardarCompetenciaClicked"
-                    BackgroundColor="#007ACC"
+                    BackgroundColor="#142e4e"
                     TextColor="White"
                     CornerRadius="10" />
 
             <!-- Tabla Informativa -->
-                <Label Text="Información de la Competencia:" FontSize="18" FontAttributes="Bold" />
-            
-                <Label Text="ID:"   />
-                <Label x:Name="Label_IdConcurso" Text="{Binding Id}"  />
+            <Frame>
+                <StackLayout>
+                    <Label Text="Información de la Competencia:" FontSize="18" FontAttributes="Bold" />
 
-                <Label Text="Nombre:"  />
-                <Label x:Name="Label_NombreConcurso" Text="{Binding Nombre}"  />
+                    <Label Text="ID:"   />
+                    <Label x:Name="Label_IdConcurso" Text="{Binding Id}"  />
 
-                <Label Text="Categoría:"  />
-                <Label x:Name="Label_CategoriaConcurso" Text="{Binding Categoria}"  />
+                    <Label Text="Nombre:"  />
+                    <Label x:Name="Label_NombreConcurso" Text="{Binding Nombre}"  />
 
-                <Label Text="Descripción:"  />
-                <Label x:Name="Label_DescripcionConcurso" Text="{Binding Descripcion}"  />
+                    <Label Text="Categoría:"  />
+                    <Label x:Name="Label_CategoriaConcurso" Text="{Binding Categoria}"  />
+
+                    <Label Text="Descripción:"  />
+                    <Label x:Name="Label_DescripcionConcurso" Text="{Binding Descripcion}"  />
+                </StackLayout>
+            </Frame>
+                
             
         </StackLayout>
     </ScrollView>
