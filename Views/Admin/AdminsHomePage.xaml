@@ -5,8 +5,7 @@
              xmlns:vm="clr-namespace:Avance2Progreso.ViewModels"
              Title="Administrador">
     <ContentPage.BindingContext>
-        <vm:AdministrarUsuariosViewModel />
-        <vm:CompetenciasViewModel/>
+        <vm:AdministrarUsuariosViewModel/>
     </ContentPage.BindingContext>
     
     <ScrollView>

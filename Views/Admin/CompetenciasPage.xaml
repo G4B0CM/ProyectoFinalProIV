@@ -10,7 +10,10 @@
     <ScrollView>
         <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
             <VerticalStackLayout Spacing="10">
-                <Label Text="Añadir Competencias" FontSize="18" FontAttributes="Bold" />
+                <StackLayout Background="#142e4e" Padding="15" >
+                    <Label Text="Añadir Competencias" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                </StackLayout>
+                    
 
                 <Entry x:Name="NombreEntry" Text="{Binding Nombre}" Placeholder="Ingresa el nombre " />
                 <Entry x:Name="CatEntry" Text="{Binding Categoria}" Placeholder="Ingresa la categoría "/>
@@ -21,12 +24,14 @@
 
                 <Button Text="Agregar Competencia"
                         Command="{Binding GuardarCommand}"
-                        BackgroundColor="Green"
-                        TextColor="White"/>
+                        BackgroundColor="#142e4e"
+                        TextColor="White"
+                        WidthRequest="200"/>
                 <Button Text="Listar Competencias"
                         Command="{Binding ListarCommand}"
-                        BackgroundColor="Green"
-                        TextColor="White"/>
+                        BackgroundColor="#142e4e"
+                        TextColor="White"
+                        WidthRequest="200"/>
 
                 <CollectionView x:Name="peopleList" 
                         Grid.Row="4"

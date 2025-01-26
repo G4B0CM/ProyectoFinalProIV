@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 
 
 
+
 namespace Avance2Progreso.ViewModels
 {
     public class CompetenciasViewModel : ObservableObject
@@ -16,12 +17,25 @@ namespace Avance2Progreso.ViewModels
         private readonly CompetenciasRepository _competenciaRepository;
         private string _statusMessage;
         public ObservableCollection<Competencias> Competencias { get; set; }
+        public ObservableCollection<string> Imagenes { get; set; }
+        private int _indiceActual;
+        private string _imagenActual;
+
+        public string ImagenActual
+        {
+            get => Imagenes.Count > 0 ? Imagenes[_indiceActual] : null;  // Devuelve la imagen según el índice actual.
+            set => SetProperty(ref _imagenActual, value);  // Cambia el valor de _imagenActual si es necesario.
+        }
+        
 
 
         public ICommand GuardarCommand { get; set; }
         public ICommand ListarCommand { get; set; }
         public ICommand EliminarCommand { get; set; }
         public ICommand BuscarPorNombreCommand { get; set; }
+        public ICommand SiguienteImagenCommand { get; set; }
+        public ICommand AnteriorImagenCommand { get; set; }
+
 
 
         public Competencias Competencia
@@ -36,6 +50,7 @@ namespace Avance2Progreso.ViewModels
                     OnPropertyChanged(nameof(_competencia.Categoria));
                     OnPropertyChanged(nameof(_competencia.Descripcion));
                     OnPropertyChanged(nameof(_competencia.FechaCreacion));
+
                 }
             }
         }
@@ -105,10 +120,22 @@ namespace Avance2Progreso.ViewModels
             _competencia = new Competencias();
             Competencias = new ObservableCollection<Competencias>();
 
+            Imagenes = new ObservableCollection<string>
+            {
+                "iconudla.png",
+                "icondiners.png",
+            };
+
+            _indiceActual = 0;
+            ImagenActual = Imagenes[_indiceActual];
+
             GuardarCommand = new AsyncRelayCommand(Guardar);
             ListarCommand = new AsyncRelayCommand(ListarCompetencias);
             EliminarCommand = new AsyncRelayCommand(EliminarCompetencias);
             //BuscarPorNombreCommand = new RelayCommand();
+            SiguienteImagenCommand = new RelayCommand(MostrarSiguienteImagen);
+            AnteriorImagenCommand = new RelayCommand(MostrarAnteriorImagen);
+
 
         }
         private async Task Guardar()
@@ -174,6 +201,21 @@ namespace Avance2Progreso.ViewModels
             {
                 StatusMessage = $"Error al eliminar el usuario: {ex.Message}";
             }
+        }
+        private void MostrarSiguienteImagen()
+        {
+            if (Imagenes.Count == 0) return;
+
+            _indiceActual = (_indiceActual + 1) % Imagenes.Count;
+            ImagenActual = Imagenes[_indiceActual];
+        }
+
+        private void MostrarAnteriorImagen()
+        {
+            if (Imagenes.Count == 0) return;
+
+            _indiceActual = (_indiceActual - 1 + Imagenes.Count) % Imagenes.Count;
+            ImagenActual = Imagenes[_indiceActual];
         }
 
     }
