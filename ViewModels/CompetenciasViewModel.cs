@@ -100,14 +100,14 @@ namespace Avance2Progreso.ViewModels
             }
         }
 
-        public string FechaCreacion
+        public DateTime FechaCreacion
         {
-            get => _competencia.Nombre;
+            get => _competencia.FechaCreacion;
             set
             {
-                if (_competencia.Nombre != value)
+                if (_competencia.FechaCreacion != value)
                 {
-                    _competencia.Nombre = value;
+                    _competencia.FechaCreacion = value;
                     OnPropertyChanged();
                 }
             }
