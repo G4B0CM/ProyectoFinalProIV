@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 
 
 
+
 namespace Avance2Progreso.ViewModels
 {
     public class CompetenciasViewModel : ObservableObject
@@ -16,6 +17,7 @@ namespace Avance2Progreso.ViewModels
         private readonly CompetenciasRepository _competenciaRepository;
         private string _statusMessage;
         public ObservableCollection<Competencias> Competencias { get; set; }
+       
 
 
         public ICommand GuardarCommand { get; set; }
@@ -37,6 +39,7 @@ namespace Avance2Progreso.ViewModels
                     OnPropertyChanged(nameof(_competencia.Categoria));
                     OnPropertyChanged(nameof(_competencia.Descripcion));
                     OnPropertyChanged(nameof(_competencia.FechaCreacion));
+
                 }
             }
         }
@@ -106,9 +109,12 @@ namespace Avance2Progreso.ViewModels
             _competencia = new Competencias();
             Competencias = new ObservableCollection<Competencias>();
 
+       
+
             GuardarCommand = new AsyncRelayCommand(Guardar);
             ListarCommand = new AsyncRelayCommand(ListarCompetencias);
             EliminarCommand = new AsyncRelayCommand(EliminarCompetencias);
+
             BuscarPorNombreCommand = new AsyncRelayCommand(BuscarCompetenciaPorNombre);
             EditarCompetenciaCommand = new AsyncRelayCommand(EditarCompetencia);
 
@@ -177,7 +183,6 @@ namespace Avance2Progreso.ViewModels
                 StatusMessage = $"Error al eliminar el usuario: {ex.Message}";
             }
         }
-
         private async Task BuscarCompetenciaPorNombre()
         {
             try
@@ -264,6 +269,7 @@ namespace Avance2Progreso.ViewModels
                 await Shell.Current.DisplayAlert("Error", StatusMessage, "OK");
             }
         }
+
 
     }
 }
