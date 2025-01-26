@@ -92,6 +92,7 @@
                                    BackgroundColor="DarkCyan">
                                 <Grid ColumnDefinitions="Auto,Auto"
                                        RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                                    
                                     <!-- ID -->
                                     <Label Grid.Row="0" Grid.Column="0" 
                                            Text="ID:" 

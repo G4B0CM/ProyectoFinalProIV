@@ -117,29 +117,31 @@ namespace Avance2Progreso.Repositories
             }
         }
 
-        public void EditarCompetencia(string nombre, string categoria, string descripcion)
+        public void EditarCompetencia(int id, string nombre, string categoria, string descripcion)
         {
             int result = 0;
             try
             {
                 Init();
 
-                if (nombre != null)
-                    throw new Exception("Se requiere el parametro de nombre.");
+                if (id <= 0)
+                    throw new Exception("Se requiere un ID válido para editar la competencia.");
 
-                // Buscar el usuario por ID
-                var competencia = conn.Table<Competencias>().FirstOrDefault(p => p.Nombre == nombre);
+                // Buscar la competencia por ID
+                var competencia = conn.Table<Competencias>().FirstOrDefault(p => p.Id == id);
 
                 if (competencia == null)
-                    throw new Exception($"Usuario con Nombre {nombre} no encontrado.");
+                    throw new Exception($"No se encontró una competencia con el ID: {id}");
 
-                competencia.Nombre = nombre ?? competencia.Nombre; //Profe el ?? indica que si es null se mantiene
-                competencia.Categoria = categoria ?? competencia.Categoria; //el valor existente
+                // Actualizar los valores
+                competencia.Nombre = nombre ?? competencia.Nombre;
+                competencia.Categoria = categoria ?? competencia.Categoria;
                 competencia.Descripcion = descripcion ?? competencia.Descripcion;
 
-                result = conn.Update(competencia);
+                // Guardar los cambios
+                conn.Update(competencia);
 
-                StatusMessage = string.Format("{0} registro(s) actualizado(s) (Nombre: {1})", result, nombre);
+                StatusMessage = $"Competencia con ID {id} actualizada correctamente.";
             }
             catch (Exception ex)
             {

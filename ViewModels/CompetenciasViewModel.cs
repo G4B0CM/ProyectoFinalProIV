@@ -292,12 +292,7 @@ namespace Avance2Progreso.ViewModels
                 }
 
                 // Actualizar en el repositorio
-                _competenciaRepository.EditarCompetencia(nuevoNombre, nuevaCategoria, nuevaDescripcion);
-
-                // Actualizar la lista local
-                Competencia.Nombre = nuevoNombre;
-                Competencia.Categoria = nuevaCategoria;
-                Competencia.Descripcion = nuevaDescripcion;
+                _competenciaRepository.EditarCompetencia(Competencia.Id,nuevoNombre, nuevaCategoria, nuevaDescripcion);
 
                 // Refrescar la lista completa
                 await ListarCompetencias();

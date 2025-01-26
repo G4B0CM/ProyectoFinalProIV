@@ -9,8 +9,7 @@
     <!-- Página de Login (por defecto, accesible por ruta) -->
     <ShellContent Route="login" Title="Login" ContentTemplate="{DataTemplate Views:LoginPage}" />
     <ShellContent Route="registro" Title="Registro" ContentTemplate="{DataTemplate Views:Registro}" />
-    <ShellContent Route="Admins" Title="1" ContentTemplate="{DataTemplate Views:Admin.CompetenciasPage}" />
-    
+
     <!-- TabBar para Admin -->
     <TabBar x:Name="AdminTabs" IsVisible="False">
         <ShellContent x:Name="AdminInicio" Title="Inicio" Route ="AdminsHomePage" ContentTemplate="{DataTemplate Views:Admin.AdminsHomePage}" Icon="admin_home_icon.png" />
