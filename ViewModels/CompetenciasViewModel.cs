@@ -25,6 +25,7 @@ namespace Avance2Progreso.ViewModels
         public ICommand EliminarCommand { get; set; }
         public ICommand BuscarPorNombreCommand { get; set; }
         public ICommand EditarCompetenciaCommand { get; set; }
+        public ICommand LimpiarBusquedaCommand { get; set; }
 
 
 
@@ -36,10 +37,10 @@ namespace Avance2Progreso.ViewModels
 
                 if (SetProperty(ref _competencia, value))
                 {
-                    OnPropertyChanged(nameof(_competencia.Nombre));
-                    OnPropertyChanged(nameof(_competencia.Categoria));
-                    OnPropertyChanged(nameof(_competencia.Descripcion));
-                    OnPropertyChanged(nameof(_competencia.FechaCreacion));
+                    OnPropertyChanged(nameof(Nombre));
+                    OnPropertyChanged(nameof(Categoria));
+                    OnPropertyChanged(nameof(Descripcion));
+                    OnPropertyChanged(nameof(FechaCreacion));
 
                 }
             }
@@ -55,9 +56,10 @@ namespace Avance2Progreso.ViewModels
         }
         public string Nombre
         {
-            get => _competencia.Nombre;
+            get => _competencia?.Nombre ?? string.Empty; // Evitar NullReferenceException
             set
             {
+                if (_competencia == null) _competencia = new Competencias(); // Inicializar si es null
                 if (_competencia.Nombre != value)
                 {
                     _competencia.Nombre = value;
@@ -67,9 +69,10 @@ namespace Avance2Progreso.ViewModels
         }
         public string Categoria
         {
-            get => _competencia.Categoria;
+            get => _competencia?.Categoria ?? string.Empty; // Evitar NullReferenceException
             set
             {
+                if (_competencia == null) _competencia = new Competencias(); // Inicializar si es null
                 if (_competencia.Categoria != value)
                 {
                     _competencia.Categoria = value;
@@ -79,9 +82,10 @@ namespace Avance2Progreso.ViewModels
         }
         public string Descripcion
         {
-            get => _competencia.Descripcion;
+            get => _competencia?.Descripcion ?? string.Empty; // Evitar NullReferenceException
             set
             {
+                if (_competencia == null) _competencia = new Competencias(); // Inicializar si es null
                 if (_competencia.Descripcion != value)
                 {
                     _competencia.Descripcion = value;
@@ -107,6 +111,7 @@ namespace Avance2Progreso.ViewModels
         {
             string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GabrielCalderon.db3");
             _competenciaRepository = new CompetenciasRepository(dbPath);
+            
             _competencia = new Competencias();
             Competencias = new ObservableCollection<Competencias>();
 
@@ -117,31 +122,33 @@ namespace Avance2Progreso.ViewModels
             EliminarCommand = new AsyncRelayCommand(EliminarCompetencias);
             BuscarPorNombreCommand = new AsyncRelayCommand(BuscarCompetenciaPorNombre);
             EditarCompetenciaCommand = new AsyncRelayCommand(EditarCompetencia);
+            LimpiarBusquedaCommand = new AsyncRelayCommand(LimpiarBusqueda);
         }
         private async Task Guardar()
         {
             try
             {
-                if (string.IsNullOrEmpty(_competencia.Nombre))
+                if (string.IsNullOrEmpty(Nombre))
                 {
                     throw new Exception("El nombre no puede estar vacío.");
                 }
-                if (string.IsNullOrEmpty(_competencia.Categoria))
+                if (string.IsNullOrEmpty(Categoria))
                 {
                     throw new Exception("El nombre no puede estar vacío.");
                 }
-                if (string.IsNullOrEmpty(_competencia.Descripcion))
+                if (string.IsNullOrEmpty(Descripcion))
                 {
                     throw new Exception("El nombre no puede estar vacío.");
                 }
 
-                _competenciaRepository.GuardarCompetencia(_competencia.Nombre, _competencia.Categoria,_competencia.Descripcion);
+                _competenciaRepository.GuardarCompetencia(Nombre, Categoria,Descripcion);
 
-                await Shell.Current.DisplayAlert("Alerta", $"Competencia {_competencia.Nombre} guardada exitosamente.","OK");
+                await Shell.Current.DisplayAlert("Alerta", $"Competencia {Nombre} guardada exitosamente.","OK");
             }
             catch (Exception ex)
             {
                 StatusMessage = $"Error al guardar la competencia. Detalles: {ex.Message}";
+                await Shell.Current.DisplayAlert("Error", StatusMessage, "Ok");
             }
         }
 
@@ -168,18 +175,37 @@ namespace Avance2Progreso.ViewModels
         {
             try
             {
-                if (Id <= 0 )
-                    throw new Exception("Usuario no válido para eliminar.");
+                if (Competencia == null)
+                {
+                    StatusMessage = "Seleccione una competencia para eliminar.";
+                    await Shell.Current.DisplayAlert("Error", StatusMessage, "OK");
+                    return;
+                }
 
-                _competenciaRepository.EliminarCompetencia(Id);
-                var competencia = Competencias.First(Competencia => Competencia.Id == Id);
-                Competencias.Remove(competencia);
+                int filasEliminadas = await _competenciaRepository.EliminarCompetencia(Competencia.Id);
 
-                StatusMessage = $"Usuario {competencia.Nombre} eliminado exitosamente.";
+                if (filasEliminadas > 0)
+                {
+                    var competencia = Competencias.FirstOrDefault(c => c.Id == Competencia.Id);
+                    if (competencia != null)
+                    {
+                        Competencias.Remove(competencia);
+                    }
+                    StatusMessage = $"Competencia '{Competencia.Nombre}' eliminada exitosamente.";
+                    Competencia = null; // Reinicia la selección
+                }
+                else
+                {
+                    StatusMessage = "No se pudo eliminar la competencia. Verifique si aún existe.";
+                }
+
+                await Shell.Current.DisplayAlert("Resultado", StatusMessage, "OK");
+            
             }
             catch (Exception ex)
             {
-                StatusMessage = $"Error al eliminar el usuario: {ex.Message}";
+                StatusMessage = $"Error al eliminar la competencia: {ex.Message}";
+                await Shell.Current.DisplayAlert("Error", StatusMessage, "OK");
             }
         }
        
@@ -234,34 +260,49 @@ namespace Avance2Progreso.ViewModels
         {
             try
             {
-                if (string.IsNullOrEmpty(Nombre))
+                if (Competencia == null)
                 {
-                    throw new Exception("El nombre no puede estar vacío.");
+                    StatusMessage = "Seleccione una competencia para editar.";
+                    await Shell.Current.DisplayAlert("Error", StatusMessage, "OK");
+                    return;
                 }
 
-                if (string.IsNullOrEmpty(Categoria))
+                // Mostrar alertas para capturar los nuevos valores
+                string nuevoNombre = await Shell.Current.DisplayPromptAsync(
+                    "Editar Competencia",
+                    "Ingrese el nuevo nombre:",
+                    initialValue: Competencia.Nombre);
+
+                string nuevaCategoria = await Shell.Current.DisplayPromptAsync(
+                    "Editar Competencia",
+                    "Ingrese la nueva categoría:",
+                    initialValue: Competencia.Categoria);
+
+                string nuevaDescripcion = await Shell.Current.DisplayPromptAsync(
+                    "Editar Competencia",
+                    "Ingrese la nueva descripción:",
+                    initialValue: Competencia.Descripcion);
+
+                // Validar los valores ingresados
+                if (string.IsNullOrEmpty(nuevoNombre) || string.IsNullOrEmpty(nuevaCategoria) || string.IsNullOrEmpty(nuevaDescripcion))
                 {
-                    throw new Exception("La categoría no puede estar vacía.");
+                    StatusMessage = "Todos los campos son obligatorios.";
+                    await Shell.Current.DisplayAlert("Error", StatusMessage, "OK");
+                    return;
                 }
 
-                if (string.IsNullOrEmpty(Descripcion))
-                {
-                    throw new Exception("La descripción no puede estar vacía.");
-                }
+                // Actualizar en el repositorio
+                _competenciaRepository.EditarCompetencia(nuevoNombre, nuevaCategoria, nuevaDescripcion);
 
-                // Llama al método del repositorio para editar la competencia
-                _competenciaRepository.EditarCompetencia(Nombre, Categoria, Descripcion);
+                // Actualizar la lista local
+                Competencia.Nombre = nuevoNombre;
+                Competencia.Categoria = nuevaCategoria;
+                Competencia.Descripcion = nuevaDescripcion;
 
-                // Actualiza la lista para reflejar los cambios
-                var competencia = Competencias.FirstOrDefault(c => c.Nombre == Nombre);
-                if (competencia != null)
-                {
-                    competencia.Nombre = Nombre;
-                    competencia.Categoria = Categoria;
-                    competencia.Descripcion = Descripcion;
-                }
+                // Refrescar la lista completa
+                await ListarCompetencias();
 
-                StatusMessage = $"Competencia '{Nombre}' actualizada correctamente.";
+                StatusMessage = $"Competencia '{nuevoNombre}' actualizada correctamente.";
                 await Shell.Current.DisplayAlert("Éxito", StatusMessage, "OK");
             }
             catch (Exception ex)
@@ -269,6 +310,12 @@ namespace Avance2Progreso.ViewModels
                 StatusMessage = $"Error al editar la competencia: {ex.Message}";
                 await Shell.Current.DisplayAlert("Error", StatusMessage, "OK");
             }
+        }
+        private async Task LimpiarBusqueda()
+        {
+            Nombre = string.Empty;
+            Categoria = string.Empty;
+            Descripcion = string.Empty;
         }
 
     }
