@@ -2,14 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avance2Progreso.Views.Admin.AdminsHomePage"
+             xmlns:vm="clr-namespace:Avance2Progreso.ViewModels"
              Title="Administrador">
+    <ContentPage.BindingContext>
+        <vm:AdministrarUsuariosViewModel />
+        <vm:CompetenciasViewModel/>
+    </ContentPage.BindingContext>
+    
     <ScrollView>
     <VerticalStackLayout Background="White">
         <StackLayout Background="#142e4e" Padding="15">
             <Label Text="Administrador" TextColor="White" HorizontalOptions="Center"/>
         </StackLayout>
         
-        <Grid BackgroundColor="Beige">
+        <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
@@ -26,19 +32,23 @@
         </Grid>
  
        
-        <Label Text="Hola, Nombre del Administrador" TextColor="Black" Margin="5"/>
-        
-        <Frame Background="White"
+        <Label Text="Hola" TextColor="Black" Margin="5"/>
+            <Label Text="{Binding Username}"/>
+
+            <Frame Background="White"
                CornerRadius="15" 
                Padding="10" 
                Margin="20">
             <StackLayout>
                 <Label Text="Concursos Realizados: " TextColor="Black"/>
-            </StackLayout>
+                    <Label Text="{Binding Competencia}"/>
+                </StackLayout>
             
         </Frame>
+
+            <!-- No es necesario este frame
         
-        <Frame Background="White"
+            <Frame Background="White"
                 CornerRadius="15" 
                 Padding="10" 
                 Margin="20">
@@ -50,7 +60,7 @@
             
             
 
-        </Frame>
+        </Frame>-->
 
     </VerticalStackLayout>
     </ScrollView>
