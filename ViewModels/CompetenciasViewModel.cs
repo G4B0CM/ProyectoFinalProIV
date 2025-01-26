@@ -27,6 +27,7 @@ namespace Avance2Progreso.ViewModels
         public ICommand EditarCompetenciaCommand { get; set; }
 
 
+
         public Competencias Competencia
         {
             get => _competencia;
@@ -114,10 +115,8 @@ namespace Avance2Progreso.ViewModels
             GuardarCommand = new AsyncRelayCommand(Guardar);
             ListarCommand = new AsyncRelayCommand(ListarCompetencias);
             EliminarCommand = new AsyncRelayCommand(EliminarCompetencias);
-
             BuscarPorNombreCommand = new AsyncRelayCommand(BuscarCompetenciaPorNombre);
             EditarCompetenciaCommand = new AsyncRelayCommand(EditarCompetencia);
-
         }
         private async Task Guardar()
         {
@@ -183,6 +182,8 @@ namespace Avance2Progreso.ViewModels
                 StatusMessage = $"Error al eliminar el usuario: {ex.Message}";
             }
         }
+       
+
         private async Task BuscarCompetenciaPorNombre()
         {
             try
@@ -269,7 +270,6 @@ namespace Avance2Progreso.ViewModels
                 await Shell.Current.DisplayAlert("Error", StatusMessage, "OK");
             }
         }
-
 
     }
 }
