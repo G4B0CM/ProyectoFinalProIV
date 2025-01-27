@@ -9,6 +9,7 @@
     </ContentPage.BindingContext>
     
     <ScrollView>
+
     <VerticalStackLayout Background="White">
         <StackLayout Background="#142e4e" Padding="15">
             <Label Text="Administrador" TextColor="White" HorizontalOptions="Center"/>
@@ -31,7 +32,7 @@
         </Grid>
  
        
-        <Label Text="Hola" TextColor="Black" Margin="5"/>
+        <Label Text="Bienvenido Administrador" TextColor="Black" Margin="5"/>
             <Label Text="{Binding Username}"/>
 
             <Frame Background="White"

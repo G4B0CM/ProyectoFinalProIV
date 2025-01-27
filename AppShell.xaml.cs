@@ -9,10 +9,9 @@ namespace Avance2Progreso
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute("CompetenciasPage", typeof(Admins));
             Routing.RegisterRoute("registro", typeof(Registro));
-            Routing.RegisterRoute("AdminsHomePage", typeof(Admins));
-            Routing.RegisterRoute("StudentsHomePage", typeof(StudentsPage));
+            Routing.RegisterRoute("AdminsHomePage", typeof(AdminsHomePage));
+            Routing.RegisterRoute("StudentsHomePage", typeof(StudentsHomePage));
             AdminTabs.IsVisible = false;
             StudentTabs.IsVisible = false;
 

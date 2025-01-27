@@ -1,51 +1,54 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Avance2Progreso.MainPage"
+             x:Class="Avance2Progreso.Views.Admin.AdministarView"
              xmlns:vm="clr-namespace:Avance2Progreso.ViewModels"
-             Title="Administrar Usuarios">
+             Title="AdministarView">
     <ContentPage.BindingContext>
         <vm:AdministrarUsuariosViewModel/>
     </ContentPage.BindingContext>
     <ScrollView>
+        
         <VerticalStackLayout Padding="20" Spacing="20">
 
-            <!-- Title -->
-            <Label Text="Manejo de Usuarios" 
-                   FontSize="24" 
-                   HorizontalOptions="Center" />
 
-            <!-- Add User Section -->
+            <StackLayout Background="#142e4e" Padding="15">
+                <Label Text="Gestión de Usuarios" 
+           FontSize="18" 
+           FontAttributes="Bold" 
+           TextColor="White" />
+            </StackLayout>
+
+
             <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="Add User" FontSize="18" FontAttributes="Bold" />
+                    <Label Text="Agregar Usuario" FontSize="18" FontAttributes="Bold" />
 
-                    <Entry x:Name="UsernameEntry" Text="{Binding Username}" Placeholder="Enter Username" />
-                    <Entry x:Name="PasswordEntry" Text="{Binding Password}" Placeholder="Enter Password" IsPassword="True" />
+                    <Entry x:Name="UsernameEntry" Text="{Binding Username}" Placeholder="Ingresa el nombre" />
+                    <Entry x:Name="PasswordEntry" Text="{Binding Password}" Placeholder="Ingresa la contraseña" IsPassword="True" />
 
                     <HorizontalStackLayout Spacing="10">
                         <Label Text="Is Admin:" VerticalOptions="Center" />
                         <Switch x:Name="IsAdminSwitch" IsToggled="{Binding IsAdmin}" />
                     </HorizontalStackLayout>
 
-                    <Button Text="Add User"
-                            Command="{Binding SaveCommand}"
-                            BackgroundColor="Green"
+                    <Button Text="Agregar Usuario"
+                            Command="{Binding GuardarDesdeAdminCommand}"
+                            BackgroundColor="#142e4e"
                             TextColor="White"
                             Clicked="OnCreateUserClicked" />
                 </VerticalStackLayout>
             </Frame>
 
-            <!-- Delete User Section -->
             <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="Delete User" FontSize="18" FontAttributes="Bold" />
+                    <Label Text="Eliminar Usuario" FontSize="18" FontAttributes="Bold" />
 
-                    <Entry x:Name="UserIdEntry" Text="{Binding Id}" Placeholder="Enter User ID to Delete" Keyboard="Numeric" />
+                    <Entry x:Name="UserIdEntry" Text="{Binding Id}" Placeholder="Ingrese el id a Eliminar" Keyboard="Numeric" />
 
-                    <Button Text="Delete User"
+                    <Button Text="Eliminar Usuario"
                             Command="{Binding DeletePersonCommand}"
-                            BackgroundColor="Red"
+                            BackgroundColor="#142e4e"
                             TextColor="White"
                             Clicked="OnDeleteUserClicked" />
                 </VerticalStackLayout>
@@ -53,14 +56,13 @@
 
             <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="Get All Users" FontSize="18" FontAttributes="Bold" />
+                    <Label Text="Listar Usuarios" FontSize="18" FontAttributes="Bold" />
 
-                    <Button Text="Listar Estudiantes"
-         BackgroundColor="Blue"
+                    <Button Text="Listar Usuarios"
+         BackgroundColor="#142e4e"
          TextColor="White"
          Command="{Binding GetAllPeopleCommand}"/>
 
-                    <!-- Lista de usuarios -->
                     <CollectionView x:Name="UsersCollection" ItemsSource="{Binding UsersList}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
@@ -77,12 +79,12 @@
 
             <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="Get User by ID" FontSize="18" FontAttributes="Bold" />
+                    <Label Text="Obtener Usuario por Id" FontSize="18" FontAttributes="Bold" />
 
-                    <Entry x:Name="FetchUserIdEntry" Text="{Binding Id}" Placeholder="Enter User ID" Keyboard="Numeric" />
+                    <Entry x:Name="FetchUserIdEntry" Text="{Binding Id}" Placeholder="Ingrese el ID" Keyboard="Numeric" />
 
-                    <Button Text="Fetch User"
-                            BackgroundColor="Blue"
+                    <Button Text="Buscar usuario"
+                            BackgroundColor="#142e4e"
                             TextColor="White"
                             Command="{Binding ObtenerUnaPersonaCommand}"
                             Clicked="OnFetchUserByIdClicked" />
@@ -93,19 +95,19 @@
 
             <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="Update User" FontSize="18" FontAttributes="Bold" />
+                    <Label Text="Actualizar Usuario" FontSize="18" FontAttributes="Bold" />
 
-                    <Entry x:Name="UpdateUserIdEntry" Text="{Binding Id}" Placeholder="Enter User ID" Keyboard="Numeric" />
-                    <Entry x:Name="UpdateUsernameEntry" Text="{Binding Username}" Placeholder="Enter New Username" />
-                    <Entry x:Name="UpdatePasswordEntry" Text="{Binding Password}" Placeholder="Enter New Password" IsPassword="True" />
+                    <Entry x:Name="UpdateUserIdEntry" Text="{Binding Id}" Placeholder="Ingrese el ID" Keyboard="Numeric" />
+                    <Entry x:Name="UpdateUsernameEntry" Text="{Binding Username}" Placeholder="Ingrese el Nombre" />
+                    <Entry x:Name="UpdatePasswordEntry" Text="{Binding Password}" Placeholder="Ingrese la Contraseña" IsPassword="True" />
 
                     <HorizontalStackLayout Spacing="10">
                         <Label Text="Is Admin:" VerticalOptions="Center" />
                         <Switch x:Name="UpdateIsAdminSwitch" />
                     </HorizontalStackLayout>
 
-                    <Button Text="Update User"
-                            BackgroundColor="Orange"
+                    <Button Text="Actualizar Usuario"
+                            BackgroundColor="#142e4e"
                             TextColor="White"
                             Command="{Binding ActualizarPersonaCommand}"
                 Clicked="OnUpdateUserClicked" />

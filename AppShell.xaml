@@ -1,26 +1,21 @@
 <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:Views="clr-namespace:Avance2Progreso.Views"
+       xmlns:Local="clr-namespace:Avance2Progreso"
        x:Class="Avance2Progreso.AppShell"
        Title="App">
 
-
-
-    <!-- Página de Login (por defecto, accesible por ruta) -->
     <ShellContent Route="login" Title="Login" ContentTemplate="{DataTemplate Views:LoginPage}" />
     <ShellContent Route="registro" Title="Registro" ContentTemplate="{DataTemplate Views:Registro}" />
 
-    <!-- TabBar para Admin -->
     <TabBar x:Name="AdminTabs" IsVisible="False">
         <ShellContent x:Name="AdminInicio" Title="Inicio" Route ="AdminsHomePage" ContentTemplate="{DataTemplate Views:Admin.AdminsHomePage}" Icon="admin_home_icon.png" />
-        <ShellContent x:Name="AdminAdmins" Title="Admins" Route ="Admins" ContentTemplate="{DataTemplate Views:Admin.Admins}" Icon="admins_icon.png" />
-        <ShellContent x:Name="AdminEstudiantes" Title="Estudiantes" Route ="StudentsPage" ContentTemplate="{DataTemplate Views:Students.StudentsPage}" Icon="students_icon.png" />
-        <ShellContent x:Name="AdminCompetencias" Title="Competencias" Route ="CompetenciasPage" ContentTemplate="{DataTemplate Views:Admin.CompetenciasPage}" Icon="students_icon.png" />
+        <ShellContent x:Name="AdminEstudiantes" Title="Administrar Uusarios" Route ="AdministrarView" ContentTemplate="{DataTemplate Views:Admin.AdministarView}" Icon="iconagregarestudiante.png" />
+        <ShellContent x:Name="AdminCompetencias" Title="Competencias" Route ="CompetenciasPage" ContentTemplate="{DataTemplate Views:Admin.CompetenciasPage}" Icon="iconagregarconcursos.png" />
     </TabBar>
-
-    <!-- TabBar para Student -->
+    
     <TabBar x:Name="StudentTabs" IsVisible="False">
-        <ShellContent x:Name="StudentInicio" Title="Inicio" Route ="StudentsHomePage" ContentTemplate="{DataTemplate Views:Students.StudentsHomePage}" Icon="student_home_icon.png" />
+        <ShellContent x:Name="StudentInicio" Title="Inicio" Route ="StudentsHomePage" ContentTemplate="{DataTemplate Views:Students.StudentsHomePage}" Icon="iconudla.png" />
     </TabBar>
 
 </Shell>

@@ -19,6 +19,7 @@ namespace Avance2Progreso.ViewModels
         private readonly UserRepository _userRepository;
 
         public ICommand SaveCommand { get; }
+        public ICommand GuardarDesdeAdminCommand { get; }
         public ICommand GetAllPeopleCommand { get; }
         public ICommand DeletePersonCommand { get; }
         public ICommand ObtenerUnaPersonaCommand {  get; }
@@ -116,6 +117,7 @@ namespace Avance2Progreso.ViewModels
             _user = new Models.User();
             UsersList = new ObservableCollection<Models.User>();
             SaveCommand = new AsyncRelayCommand(Save);
+            GuardarDesdeAdminCommand = new AsyncRelayCommand(GuardarDesdeAdmin);
             GetAllPeopleCommand = new AsyncRelayCommand(LoadPeople);
             DeletePersonCommand = new AsyncRelayCommand(Eliminar);
             ObtenerUnaPersonaCommand = new AsyncRelayCommand(CargarUnaPersona);
@@ -124,6 +126,33 @@ namespace Avance2Progreso.ViewModels
         }
 
         private async Task Save()
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", "El usuario y contraseña son obligatorios.", "OK");
+                    return;
+                }
+
+                var newUser = new User
+                {
+                    Username = Username,
+                    Password = Password,
+                    IsAdmin = false
+                };
+
+                var createdUser = await _userService.CreateUserAsync(newUser);
+                await Application.Current.MainPage.DisplayAlert("Usuario Creado", $"Usuario creado con ID: {createdUser.Id}", "OK");
+
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"Un error occurrio: {ex.Message}", "OK");
+            }   
+        }
+
+        private async Task GuardarDesdeAdmin()
         {
             try
             {
@@ -148,7 +177,6 @@ namespace Avance2Progreso.ViewModels
             {
                 await Application.Current.MainPage.DisplayAlert("Error", $"Un error occurrio: {ex.Message}", "OK");
             }
-            
         }
 
         private async Task Eliminar()

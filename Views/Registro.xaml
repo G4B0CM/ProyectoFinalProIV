@@ -20,8 +20,6 @@
                        HeightRequest="250"/>
             </StackLayout>
 
-
-                <!-- Campo para Nombre de Usuario -->
             <StackLayout Padding="20">
                 <Entry Placeholder="Nombre de Usuario"
                        Text="{Binding Username}"
@@ -29,8 +27,6 @@
                        MaxLength="50"/>
             </StackLayout>
             
-
-            <!-- Campo para Contraseña -->
             <StackLayout Padding="20">
                 <Entry Placeholder="Contraseña"
                        Text="{Binding Password}"
@@ -38,28 +34,7 @@
                        Keyboard="Default"
                        MaxLength="50" />    
             </StackLayout>
-            
-
-            <!-- Interruptor para definir si es administrador -->
-            <Frame BorderColor="Transparent">
-                <Grid ColumnDefinitions="Auto, *" WidthRequest="300">
-
-                    <Label Grid.Column="0" 
-                           Text="¿Es administrador?" 
-                           VerticalOptions="Center" />
-                    
-                    <Switch Grid.Column="1" 
-                            IsToggled="{Binding IsAdmin}" 
-                            HorizontalOptions="End" />
-                </Grid>
-            </Frame>
-            <HorizontalStackLayout>
-
-                
-                
-            </HorizontalStackLayout>
-
-            <!-- Botón para Guardar -->
+           
             <Button Text="Guardar Usuario"
                     Command="{Binding SaveCommand}" 
                     BackgroundColor="#142e4e"
@@ -67,7 +42,6 @@
                     CornerRadius="10"
                     WidthRequest="200" HeightRequest="50"/>
 
-            <!-- Botón para Listar Usuarios -->
             <Button Text="Regresar a Inicio"
                     Command="{Binding RegresarLoginCommand   }"
                     BackgroundColor="#1d508f"
@@ -75,23 +49,7 @@
                     CornerRadius="10" 
                     WidthRequest="200" HeightRequest="50"/>
 
-            <!-- Lista de usuarios -->
-            <CollectionView ItemsSource="{Binding UsersList}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Padding="10">
-                            <Label Text="{Binding Username}" FontSize="18" />
-                            <Label Text="{Binding IsAdmin}" FontSize="14" TextColor="Gray" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-            <!-- Mensaje de estado -->
-            <Label Text="{Binding StatusMessage}" 
-                   FontAttributes="Italic" 
-                   TextColor="Gray"
-                   HorizontalTextAlignment="Center" />
+            
         </StackLayout>
     </ScrollView>
 </ContentPage>

@@ -1,57 +1,104 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Avance2Progreso.ViewModels"
              x:Class="Avance2Progreso.Views.Students.StudentsHomePage"
              Title="StudentsHomePage">
+    <ContentPage.BindingContext>
+        <vm:CompetenciasViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout Background="Beige">
+            <StackLayout Background="#142e4e" Padding="15">
+                <Label Text="Bienvenido Estudiante" 
+           FontSize="18" 
+           FontAttributes="Bold" 
+           TextColor="White" />
+            </StackLayout>
+            <HorizontalStackLayout>
+                <Image Source="https://www.udla.edu.ec/assets/logo_og.png" 
+                        WidthRequest="200" HeightRequest="200" />
+                <Image Source="https://cdn.iconscout.com/icon/free/png-256/free-diners-club-internacional-675719.png?f=webp" 
+                        Grid.Column="1" WidthRequest="200" HeightRequest="200" />
+            </HorizontalStackLayout>
+            
+            <Button Text="Listar Competencias"
+                    Command="{Binding ListarCommand}"
+                    Grid.Column="0" Grid.Row="1"
+                    BackgroundColor="#142e4e"
+                    TextColor="White"
+                    Margin="5" />
 
-    <VerticalStackLayout Background="Beige">
-        <StackLayout Background="#142e4e" Padding="15">
-            <Label Text="Estudiante" TextColor="White" HorizontalOptions="Center"/>
-        </StackLayout>
+            <CollectionView ItemsSource="{Binding Competencias}"
+                SelectedItem="{Binding Competencia, Mode=TwoWay}"
+                HeightRequest="200"
+                VerticalScrollBarVisibility="Default"
+                SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="3" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="#142e4e" 
+                   CornerRadius="10" 
+                   Padding="20" 
+                   Margin="5" 
+                   BackgroundColor="#142e4e">
+                            <Grid ColumnDefinitions="Auto,Auto"
+                       RowDefinitions="Auto,Auto,Auto,Auto,Auto">
 
-        <Grid BackgroundColor="Beige">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
 
-            </Grid.ColumnDefinitions>
-            <Image Source="https://www.udla.edu.ec/assets/logo_og.png" 
-           Grid.Row="0" Grid.Column="0" WidthRequest="300" HeightRequest="300" />
-            <Image Source="https://cdn.iconscout.com/icon/free/png-256/free-diners-club-internacional-675719.png?f=webp" 
-           Grid.Row="0" Grid.Column="1" WidthRequest="200" HeightRequest="200" />
+                                <Label Grid.Row="0" Grid.Column="0" 
+                           Text="ID:" 
+                           FontAttributes="Bold"
+                           Margin="0,0,10,0" />
+                                <Label Grid.Row="0" Grid.Column="1" 
+                           Text="{Binding Id}" 
+                           FontSize="Medium"
+                           Margin="10,0,0,0" />
 
-        </Grid>
+                                <Label Grid.Row="1" Grid.Column="0" 
+                           Text="Nombre:" 
+                           FontAttributes="Bold"
+                           Margin="0,5,10,0" />
+                                <Label Grid.Row="1" Grid.Column="1" 
+                           Text="{Binding Nombre}" 
+                           FontSize="Medium"
+                           Margin="10,5,0,0" />
 
-        <Label Text="Hola, [nombre del estudiante]" Margin="5" />
+                                <Label Grid.Row="2" Grid.Column="0" 
+                           Text="Categoría:" 
+                           FontAttributes="Bold"
+                           Margin="0,5,10,0" />
+                                <Label Grid.Row="2" Grid.Column="1" 
+                           Text="{Binding Categoria}" 
+                           FontSize="Medium"
+                           Margin="10,5,0,0" />
 
-        <Frame Background="White"
-               CornerRadius="15" 
-               Padding="10" 
-               Margin="20">
-            <Label Text="Los puntos que ha ganado" 
-                   HorizontalOptions="Start" />
-        </Frame>
+                                <Label Grid.Row="3" Grid.Column="0" 
+                           Text="Descripción:" 
+                           FontAttributes="Bold"
+                           Margin="0,5,10,0" />
+                                <Label Grid.Row="3" Grid.Column="1" 
+                           Text="{Binding Descripcion}" 
+                           FontSize="Medium"
+                           Margin="10,5,0,0" />
 
-        <Frame Background="White"
-               CornerRadius="15" 
-               Padding="10" 
-               Margin="20">
-            <Label Text="Los concursos que ha participado" 
-                   HorizontalOptions="Start" />
-        </Frame>
+                                <Label Grid.Row="4" Grid.Column="0" 
+                           Text="Fecha:" 
+                           FontAttributes="Bold"
+                           Margin="0,5,10,0" />
+                                <Label Grid.Row="4" Grid.Column="1" 
+                           Text="{Binding FechaCreacion, StringFormat='{0:dd/MM/yyyy}'}" 
+                           FontSize="Medium"
+                           Margin="10,5,0,0" />
+                            </Grid>
 
-        <Frame Background="White"
-               CornerRadius="15" 
-               Padding="10" 
-               Margin="20">
-            <Label Text="El concurso en el que está participando" 
-                   HorizontalOptions="Start" />
-        </Frame>
-
-    </VerticalStackLayout>
-
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>

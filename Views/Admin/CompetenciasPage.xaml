@@ -10,7 +10,6 @@
     <ScrollView>
         <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
             <VerticalStackLayout Spacing="10">
-                <!-- Encabezado -->
                 <StackLayout Background="#142e4e" Padding="15">
                     <Label Text="Gestión de Competencias" 
                            FontSize="18" 
@@ -18,15 +17,12 @@
                            TextColor="White" />
                 </StackLayout>
 
-                <!-- Campos de entrada -->
                 <Entry Text="{Binding Nombre}" Placeholder="Nombre de la competencia" />
                 <Entry Text="{Binding Categoria}" Placeholder="Categoría" />
                 <Entry Text="{Binding Descripcion}" Placeholder="Descripción" />
 
-                <!-- Botones de acción -->
                 <Grid ColumnDefinitions="*,*,*"
                        RowDefinitions="Auto,Auto">
-                    <!-- Primera fila de botones -->
                     <Button Text="Agregar Competencia"
                             Command="{Binding GuardarCommand}"
                             Grid.Column="0" Grid.Row="0"
@@ -46,7 +42,6 @@
                             TextColor="White"
                             Margin="5" />
 
-                    <!-- Segunda fila de botones -->
                     <Button Text="Listar Competencias"
                             Command="{Binding ListarCommand}"
                             Grid.Column="0" Grid.Row="1"
@@ -67,14 +62,12 @@
                             Margin="5" />
                 </Grid>
 
-                <!-- Mensaje de estado -->
                 <Label Text="{Binding StatusMessage}" 
                        FontSize="Medium" 
-                       TextColor="Red" 
+                       TextColor="Gray"
                        HorizontalOptions="Center" 
                        VerticalOptions="Center" />
-
-                <!-- Lista de competencias -->
+                
                 <CollectionView ItemsSource="{Binding Competencias}"
                                 SelectedItem="{Binding Competencia, Mode=TwoWay}"
                                 HeightRequest="200"
@@ -85,15 +78,15 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame BorderColor="DarkCyan" 
+                            <Frame BorderColor="#142e4e" 
                                    CornerRadius="10" 
                                    Padding="20" 
                                    Margin="5" 
-                                   BackgroundColor="DarkCyan">
+                                   BackgroundColor="#142e4e">
                                 <Grid ColumnDefinitions="Auto,Auto"
                                        RowDefinitions="Auto,Auto,Auto,Auto,Auto">
                                     
-                                    <!-- ID -->
+                                   
                                     <Label Grid.Row="0" Grid.Column="0" 
                                            Text="ID:" 
                                            FontAttributes="Bold"
@@ -103,7 +96,6 @@
                                            FontSize="Medium"
                                            Margin="10,0,0,0" />
 
-                                    <!-- Nombre -->
                                     <Label Grid.Row="1" Grid.Column="0" 
                                            Text="Nombre:" 
                                            FontAttributes="Bold"
@@ -113,7 +105,6 @@
                                            FontSize="Medium"
                                            Margin="10,5,0,0" />
 
-                                    <!-- Categoría -->
                                     <Label Grid.Row="2" Grid.Column="0" 
                                            Text="Categoría:" 
                                            FontAttributes="Bold"
@@ -123,7 +114,6 @@
                                            FontSize="Medium"
                                            Margin="10,5,0,0" />
 
-                                    <!-- Descripción -->
                                     <Label Grid.Row="3" Grid.Column="0" 
                                            Text="Descripción:" 
                                            FontAttributes="Bold"
@@ -133,7 +123,6 @@
                                            FontSize="Medium"
                                            Margin="10,5,0,0" />
 
-                                    <!-- Fecha de Creación -->
                                     <Label Grid.Row="4" Grid.Column="0" 
                                            Text="Fecha:" 
                                            FontAttributes="Bold"
