@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Avance2Progreso.ViewModels"
@@ -7,49 +8,62 @@
         <vm:AdministrarUsuariosViewModel />
     </ContentPage.BindingContext>
 
-    <ScrollView>
-        <StackLayout>
-            <StackLayout Background="#142e4e" Padding="15">
-                <Label Text="Registrar Usuario"
-                       FontSize="24"
-                       HorizontalOptions="Center"
-                       TextColor="White"/>
-            </StackLayout>
+    <!-- Contenedor Grid con la imagen de fondo -->
+    <Grid>
+        <!-- Imagen de fondo -->
+        <Image Source="https://dce-documents.s3.amazonaws.com/styles/max_650x650/s3/2024-11/solicita-tarjeta-corp-mobile-opt.png.webp?itok=eCFqmJLu"
+               Aspect="AspectFill"
+               Opacity="0.7"/>
+
+        <!-- Contenido principal -->
+        <ScrollView>
             <StackLayout>
-                <Image Source="https://cdn.freebiesupply.com/logos/large/2x/diners-club-international-2-logo-png-transparent.png"
-                       HeightRequest="250"/>
-            </StackLayout>
+                <StackLayout Background="#142e4e" Padding="15">
+                    <Label Text="Registrar Usuario"
+                           FontSize="24"
+                           HorizontalOptions="Center"
+                           TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+                    <Image Source="https://cdn.freebiesupply.com/logos/large/2x/diners-club-international-2-logo-png-transparent.png"
+                           HeightRequest="250"/>
+                </StackLayout>
+                <Frame>
+                    <StackLayout>
+                        <Entry Placeholder="Nombre de Usuario"
+                               Text="{Binding Username}"
+                               Keyboard="Default"
+                               MaxLength="50"/>
+                        <Entry Placeholder="Contraseña"
+                               Text="{Binding Password}"
+                               IsPassword="True"
+                               Keyboard="Default"
+                               MaxLength="50" />
+                    </StackLayout>
+                    
+                </Frame>
+                
 
-            <StackLayout Padding="20">
-                <Entry Placeholder="Nombre de Usuario"
-                       Text="{Binding Username}"
-                       Keyboard="Default"
-                       MaxLength="50"/>
-            </StackLayout>
-            
-            <StackLayout Padding="20">
-                <Entry Placeholder="Contraseña"
-                       Text="{Binding Password}"
-                       IsPassword="True"
-                       Keyboard="Default"
-                       MaxLength="50" />    
-            </StackLayout>
-           
-            <Button Text="Guardar Usuario"
-                    Command="{Binding SaveCommand}" 
-                    BackgroundColor="#142e4e"
-                    TextColor="White"
-                    CornerRadius="10"
-                    WidthRequest="200" HeightRequest="50"/>
+                <StackLayout Padding="20">
+                    
+                </StackLayout>
 
-            <Button Text="Regresar a Inicio"
-                    Command="{Binding RegresarLoginCommand   }"
-                    BackgroundColor="#1d508f"
-                    TextColor="White"
-                    CornerRadius="10" 
-                    WidthRequest="200" HeightRequest="50"/>
+                <Button Text="Guardar Usuario"
+                        Command="{Binding SaveCommand}" 
+                        BackgroundColor="#142e4e"
+                        TextColor="White"
+                        CornerRadius="10"
+                        WidthRequest="200" HeightRequest="50"/>
+                <StackLayout Padding="8">
 
-            
-        </StackLayout>
-    </ScrollView>
+                </StackLayout>
+                <Button Text="Regresar a Inicio"
+                        Command="{Binding RegresarLoginCommand}"
+                        BackgroundColor="#1d508f"
+                        TextColor="White"
+                        CornerRadius="10" 
+                        WidthRequest="200" HeightRequest="50"/>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

@@ -3,6 +3,7 @@ namespace Avance2Progreso
 
 {
     using Avance2Progreso.Views.Admin;
+    using Avance2Progreso.Views.Students;
     using Views;
     public partial class App : Application
     {
@@ -12,7 +13,7 @@ namespace Avance2Progreso
             InitializeComponent();
 
 
-            MainPage =new AdministarView();
+            MainPage =new Registro();
             UserRepo = repo;
         }
 
