@@ -13,7 +13,7 @@ namespace Avance2Progreso
             InitializeComponent();
 
 
-            MainPage =new Registro();
+            MainPage =new CreateConcursoPage();
             UserRepo = repo;
         }
 
