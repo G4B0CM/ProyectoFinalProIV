@@ -12,12 +12,16 @@
     <ScrollView>
         <StackLayout Padding="20" Spacing="15">
             <!-- Encabezado -->
-            <Label Text="Bienvenido a la página Crear Concurso"
-                   FontSize="24"
-                   FontAttributes="Bold"
-                   HorizontalTextAlignment="Center"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center" />
+            <StackLayout BackgroundColor="#142e4e" Padding="15">
+                <Label Text="Bienvenido a la página Crear Concurso"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       TextColor="White"/>
+            </StackLayout>
+        
 
             <!-- Logos -->
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
