@@ -7,137 +7,103 @@
     <ContentPage.BindingContext>
         <vm:CompetenciasViewModel/>
     </ContentPage.BindingContext>
-    <ScrollView>
-        <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
-            <VerticalStackLayout Spacing="10">
-                <StackLayout Background="#142e4e" Padding="15">
-                    <Label Text="Gestión de Competencias" 
-                           FontSize="18" 
-                           FontAttributes="Bold" 
-                           TextColor="White" />
-                </StackLayout>
 
-                <Entry Text="{Binding Nombre}" Placeholder="Nombre de la competencia" />
-                <Entry Text="{Binding Categoria}" Placeholder="Categoría" />
-                <Entry Text="{Binding Descripcion}" Placeholder="Descripción" />
+    <Grid>
+        <!-- Definimos las filas -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <!-- Contenido principal -->
+            <RowDefinition Height="Auto" />
+            <!-- Pie de página -->
+        </Grid.RowDefinitions>
 
-                <Grid ColumnDefinitions="*,*,*"
-                       RowDefinitions="Auto,Auto">
-                    <Button Text="Agregar Competencia"
-                            Command="{Binding GuardarCommand}"
-                            Grid.Column="0" Grid.Row="0"
-                            BackgroundColor="#142e4e"
-                            TextColor="White"
-                            Margin="5" />
-                    <Button Text="Eliminar Competencia"
-                            Command="{Binding EliminarCommand}"
-                            Grid.Column="1" Grid.Row="0"
-                            BackgroundColor="#142e4e"
-                            TextColor="White"
-                            Margin="5" />
-                    <Button Text="Editar Competencia"
-                            Command="{Binding EditarCompetenciaCommand}"
-                            Grid.Column="2" Grid.Row="0"
-                            BackgroundColor="#142e4e"
-                            TextColor="White"
-                            Margin="5" />
+        <!-- Contenido principal -->
+        <ScrollView Grid.Row="0">
+            <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
+                <VerticalStackLayout Spacing="10">
+                    <StackLayout Background="#142e4e" Padding="15">
+                        <Label Text="Gestión de Competencias" 
+                               FontSize="18" 
+                               FontAttributes="Bold" 
+                               TextColor="White" />
+                    </StackLayout>
 
-                    <Button Text="Listar Competencias"
-                            Command="{Binding ListarCommand}"
-                            Grid.Column="0" Grid.Row="1"
-                            BackgroundColor="#142e4e"
-                            TextColor="White"
-                            Margin="5" />
-                    <Button Text="Buscar Por Nombre"
-                            Command="{Binding BuscarPorNombreCommand}"
-                            Grid.Column="1" Grid.Row="1"
-                            BackgroundColor="#142e4e"
-                            TextColor="White"
-                            Margin="5" />
-                    <Button Text="Limpiar"
-                            Command="{Binding LimpiarBusquedaCommand}"
-                            Grid.Column="2" Grid.Row="1"
-                            BackgroundColor="#142e4e"
-                            TextColor="White"
-                            Margin="5" />
-                </Grid>
+                    <Entry Text="{Binding Nombre}" Placeholder="Nombre de la competencia" />
+                    <Entry Text="{Binding Categoria}" Placeholder="Categoría" />
+                    <Entry Text="{Binding Descripcion}" Placeholder="Descripción" />
 
-                <Label Text="{Binding StatusMessage}" 
-                       FontSize="Medium" 
-                       TextColor="Gray"
-                       HorizontalOptions="Center" 
-                       VerticalOptions="Center" />
-                
-                <CollectionView ItemsSource="{Binding Competencias}"
-                                SelectedItem="{Binding Competencia, Mode=TwoWay}"
-                                HeightRequest="200"
-                                VerticalScrollBarVisibility="Default"
-                                SelectionMode="Single">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="3" />
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame BorderColor="#142e4e" 
-                                   CornerRadius="10" 
-                                   Padding="20" 
-                                   Margin="5" 
-                                   BackgroundColor="#142e4e">
-                                <Grid ColumnDefinitions="Auto,Auto"
-                                       RowDefinitions="Auto,Auto,Auto,Auto,Auto">
-                                    
-                                   
-                                    <Label Grid.Row="0" Grid.Column="0" 
-                                           Text="ID:" 
-                                           FontAttributes="Bold"
-                                           Margin="0,0,10,0" />
-                                    <Label Grid.Row="0" Grid.Column="1" 
-                                           Text="{Binding Id}" 
-                                           FontSize="Medium"
-                                           Margin="10,0,0,0" />
+                    <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,*"
+                          ColumnSpacing="10" RowSpacing="10" Margin="0,10,0,10">
+                        <!-- Botones en grid -->
+                        <Button Text="Agregar" Command="{Binding GuardarCommand}"
+                                Grid.Row="0" Grid.Column="0"
+                                BackgroundColor="#3B82F6" TextColor="White" CornerRadius="10" />
+                        <Button Text="Eliminar" Command="{Binding EliminarCommand}"
+                                Grid.Row="0" Grid.Column="1"
+                                BackgroundColor="#3B82F6" TextColor="White" CornerRadius="10" />
+                        <Button Text="Editar" Command="{Binding EditarCompetenciaCommand}"
+                                Grid.Row="1" Grid.Column="0"
+                                BackgroundColor="#1e4a7a" TextColor="White" CornerRadius="10" />
+                        <Button Text="Listar" Command="{Binding ListarCommand}"
+                                Grid.Row="1" Grid.Column="1"
+                                BackgroundColor="#1e4a7a" TextColor="White" CornerRadius="10" />
+                        <Button Text="Buscar" Command="{Binding BuscarPorNombreCommand}"
+                                Grid.Row="2" Grid.Column="0"
+                                BackgroundColor="#0f233a" TextColor="White" CornerRadius="10" />
+                        <Button Text="Limpiar" Command="{Binding LimpiarBusquedaCommand}"
+                                Grid.Row="2" Grid.Column="1"
+                                BackgroundColor="#0f233a" TextColor="White" CornerRadius="10" />
+                    </Grid>
 
-                                    <Label Grid.Row="1" Grid.Column="0" 
-                                           Text="Nombre:" 
-                                           FontAttributes="Bold"
-                                           Margin="0,5,10,0" />
-                                    <Label Grid.Row="1" Grid.Column="1" 
-                                           Text="{Binding Nombre}" 
-                                           FontSize="Medium"
-                                           Margin="10,5,0,0" />
+                    <Label Text="{Binding StatusMessage}" 
+                           FontSize="Medium" 
+                           TextColor="Gray"
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" />
 
-                                    <Label Grid.Row="2" Grid.Column="0" 
-                                           Text="Categoría:" 
-                                           FontAttributes="Bold"
-                                           Margin="0,5,10,0" />
-                                    <Label Grid.Row="2" Grid.Column="1" 
-                                           Text="{Binding Categoria}" 
-                                           FontSize="Medium"
-                                           Margin="10,5,0,0" />
+                    <CollectionView ItemsSource="{Binding Competencias}"
+                                    SelectedItem="{Binding Competencia, Mode=TwoWay}"
+                                    HeightRequest="200"
+                                    VerticalScrollBarVisibility="Default"
+                                    SelectionMode="Single">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="3" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BorderColor="#142e4e" 
+                                       CornerRadius="10" 
+                                       Padding="20" 
+                                       Margin="5" 
+                                       BackgroundColor="#142e4e">
+                                    <Grid ColumnDefinitions="Auto,Auto"
+                                          RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                                        <Label Grid.Row="0" Grid.Column="0" Text="ID:" FontAttributes="Bold" Margin="0,0,10,0" />
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Id}" FontSize="Medium" Margin="10,0,0,0" />
+                                        <Label Grid.Row="1" Grid.Column="0" Text="Nombre:" FontAttributes="Bold" Margin="0,5,10,0" />
+                                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Nombre}" FontSize="Medium" Margin="10,5,0,0" />
+                                        <Label Grid.Row="2" Grid.Column="0" Text="Categoría:" FontAttributes="Bold" Margin="0,5,10,0" />
+                                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding Categoria}" FontSize="Medium" Margin="10,5,0,0" />
+                                        <Label Grid.Row="3" Grid.Column="0" Text="Descripción:" FontAttributes="Bold" Margin="0,5,10,0" />
+                                        <Label Grid.Row="3" Grid.Column="1" Text="{Binding Descripcion}" FontSize="Medium" Margin="10,5,0,0" />
+                                        <Label Grid.Row="4" Grid.Column="0" Text="Fecha:" FontAttributes="Bold" Margin="0,5,10,0" />
+                                        <Label Grid.Row="4" Grid.Column="1" Text="{Binding FechaCreacion, StringFormat='{0:dd/MM/yyyy}'}" FontSize="Medium" Margin="10,5,0,0" />
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+        </ScrollView>
 
-                                    <Label Grid.Row="3" Grid.Column="0" 
-                                           Text="Descripción:" 
-                                           FontAttributes="Bold"
-                                           Margin="0,5,10,0" />
-                                    <Label Grid.Row="3" Grid.Column="1" 
-                                           Text="{Binding Descripcion}" 
-                                           FontSize="Medium"
-                                           Margin="10,5,0,0" />
-
-                                    <Label Grid.Row="4" Grid.Column="0" 
-                                           Text="Fecha:" 
-                                           FontAttributes="Bold"
-                                           Margin="0,5,10,0" />
-                                    <Label Grid.Row="4" Grid.Column="1" 
-                                           Text="{Binding FechaCreacion, StringFormat='{0:dd/MM/yyyy}'}" 
-                                           FontSize="Medium"
-                                           Margin="10,5,0,0" />
-                                </Grid>
-
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </VerticalStackLayout>
-        </Frame>
-    </ScrollView>
+        <!-- Pie de página -->
+        <StackLayout Grid.Row="1" BackgroundColor="#142e4e" Padding="10">
+            <Label Text="© 2025 - PROYECTO DINERS"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   TextColor="White"
+                   FontAttributes="Bold" />
+        </StackLayout>
+    </Grid>
 </ContentPage>

@@ -12,7 +12,7 @@ namespace Avance2Progreso
             InitializeComponent();
 
 
-            MainPage =new LoginPage();
+            MainPage =new CompetenciasPage();
             UserRepo = repo;
         }
 
