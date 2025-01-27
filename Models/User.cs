@@ -13,7 +13,19 @@ namespace Avance2Progreso.Models
         public string Password { get; set; }
         public bool IsAdmin { get; set; }
 
-        public List<int> CompetenciasInscritas { get; set; } = new List<int>();
+        public string CompetenciasInscritas { get; set; } = "";
+
+        public List<int> GetCompetencias()
+        {
+            return string.IsNullOrEmpty(CompetenciasInscritas)
+                ? new List<int>()
+                : CompetenciasInscritas.Split(',').Select(int.Parse).ToList();
+        }
+
+        public void SetCompetencias(List<int> competencias)
+        {
+            CompetenciasInscritas = string.Join(",", competencias);
+        }
     }
 
 }

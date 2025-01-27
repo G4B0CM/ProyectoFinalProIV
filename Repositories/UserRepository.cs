@@ -117,5 +117,28 @@ namespace Avance2Progreso.Repositories
                 StatusMessage = string.Format("Error al actualizar el usuario con Id {0}. Error: {1}", id, ex.Message);
             }
         }
+
+        public void ActualizarCompetencias(int userId, string competenciasInscritas)
+        {
+            try
+            {
+                Init();
+                var user = conn.Table<User>().FirstOrDefault(u => u.Id == userId);
+
+                if (user == null)
+                    throw new Exception($"Usuario con ID {userId} no encontrado.");
+
+                user.CompetenciasInscritas = competenciasInscritas;
+                conn.Update(user);
+
+                StatusMessage = $"Competencias actualizadas para el usuario {userId}.";
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error al actualizar competencias: {ex.Message}";
+            }
+        }
+
+
     }
 }
