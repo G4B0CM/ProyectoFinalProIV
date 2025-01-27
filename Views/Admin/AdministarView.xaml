@@ -8,21 +8,22 @@
         <vm:AdministrarUsuariosViewModel/>
     </ContentPage.BindingContext>
     <ScrollView>
-        
+
         <VerticalStackLayout Padding="20" Spacing="20">
 
-
-            <StackLayout Background="#142e4e" Padding="15">
+            <!-- Título con color Diners -->
+            <StackLayout Background="#142e4e" Padding="15" Margin="0,0,0,10">
                 <Label Text="Gestión de Usuarios" 
-           FontSize="18" 
-           FontAttributes="Bold" 
-           TextColor="White" />
+               FontSize="20" 
+               FontAttributes="Bold" 
+               TextColor="White" 
+               HorizontalOptions="Center" />
             </StackLayout>
 
-
-            <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Agregar Usuario" FontSize="18" FontAttributes="Bold" />
+            <!-- Agregar Usuario -->
+            <Frame BorderColor="Gray" Padding="20" CornerRadius="15" BackgroundColor="White">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Agregar Usuario" FontSize="18" FontAttributes="Bold" TextColor="#142e4e" />
 
                     <Entry x:Name="UsernameEntry" Text="{Binding Username}" Placeholder="Ingresa el nombre" />
                     <Entry x:Name="PasswordEntry" Text="{Binding Password}" Placeholder="Ingresa la contraseña" IsPassword="True" />
@@ -33,43 +34,55 @@
                     </HorizontalStackLayout>
 
                     <Button Text="Agregar Usuario"
-                            Command="{Binding GuardarDesdeAdminCommand}"
-                            BackgroundColor="#142e4e"
-                            TextColor="White"
-                            Clicked="OnCreateUserClicked" />
+                    Command="{Binding GuardarDesdeAdminCommand}"
+                    BackgroundColor="#142e4e"
+                    TextColor="White"
+                    CornerRadius="25"
+                    HeightRequest="45"
+                    FontSize="16"
+                    Margin="0,10"/>
                 </VerticalStackLayout>
             </Frame>
 
-            <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Eliminar Usuario" FontSize="18" FontAttributes="Bold" />
+            <!-- Eliminar Usuario -->
+            <Frame BorderColor="Gray" Padding="20" CornerRadius="15" BackgroundColor="White">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Eliminar Usuario" FontSize="18" FontAttributes="Bold" TextColor="#142e4e" />
 
                     <Entry x:Name="UserIdEntry" Text="{Binding Id}" Placeholder="Ingrese el id a Eliminar" Keyboard="Numeric" />
 
                     <Button Text="Eliminar Usuario"
-                            Command="{Binding DeletePersonCommand}"
-                            BackgroundColor="#142e4e"
-                            TextColor="White"
-                            Clicked="OnDeleteUserClicked" />
+                    Command="{Binding DeletePersonCommand}"
+                    BackgroundColor="#142e4e"
+                    TextColor="White"
+                    CornerRadius="25"
+                    HeightRequest="45"
+                    FontSize="16"
+                    Margin="0,10"/>
                 </VerticalStackLayout>
             </Frame>
 
-            <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Listar Usuarios" FontSize="18" FontAttributes="Bold" />
+            <!-- Listar Usuarios -->
+            <Frame BorderColor="Gray" Padding="20" CornerRadius="15" BackgroundColor="White">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Listar Usuarios" FontSize="18" FontAttributes="Bold" TextColor="#142e4e" />
 
                     <Button Text="Listar Usuarios"
-         BackgroundColor="#142e4e"
-         TextColor="White"
-         Command="{Binding GetAllPeopleCommand}"/>
+                    Command="{Binding GetAllPeopleCommand}"
+                    BackgroundColor="#142e4e"
+                    TextColor="White"
+                    CornerRadius="25"
+                    HeightRequest="45"
+                    FontSize="16"
+                    Margin="0,10"/>
 
                     <CollectionView x:Name="UsersCollection" ItemsSource="{Binding UsersList}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout Orientation="Horizontal" Padding="5">
-                                    <Label Text="{Binding Id}" WidthRequest="50" />
-                                    <Label Text="{Binding Username}" />
-                                    <Label Text="{Binding IsAdmin}" HorizontalOptions="EndAndExpand" />
+                                    <Label Text="{Binding Id}" WidthRequest="50" TextColor="#142e4e"/>
+                                    <Label Text="{Binding Username}" TextColor="#142e4e"/>
+                                    <Label Text="{Binding IsAdmin}" HorizontalOptions="EndAndExpand" TextColor="#142e4e"/>
                                 </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
@@ -77,25 +90,30 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Obtener Usuario por Id" FontSize="18" FontAttributes="Bold" />
+            <!-- Obtener Usuario por Id -->
+            <Frame BorderColor="Gray" Padding="20" CornerRadius="15" BackgroundColor="White">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Obtener Usuario por Id" FontSize="18" FontAttributes="Bold" TextColor="#142e4e" />
 
                     <Entry x:Name="FetchUserIdEntry" Text="{Binding Id}" Placeholder="Ingrese el ID" Keyboard="Numeric" />
 
                     <Button Text="Buscar usuario"
-                            BackgroundColor="#142e4e"
-                            TextColor="White"
-                            Command="{Binding ObtenerUnaPersonaCommand}"
-                            Clicked="OnFetchUserByIdClicked" />
+                    Command="{Binding ObtenerUnaPersonaCommand}"
+                    BackgroundColor="#142e4e"
+                    TextColor="White"
+                    CornerRadius="25"
+                    HeightRequest="45"
+                    FontSize="16"
+                    Margin="0,10" />
 
                     <Label x:Name="FetchedUserLabel" Text="{Binding Username}" FontSize="14" TextColor="Gray" />
                 </VerticalStackLayout>
             </Frame>
 
-            <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Actualizar Usuario" FontSize="18" FontAttributes="Bold" />
+            <!-- Actualizar Usuario -->
+            <Frame BorderColor="Gray" Padding="20" CornerRadius="15" BackgroundColor="White">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Actualizar Usuario" FontSize="18" FontAttributes="Bold" TextColor="#142e4e" />
 
                     <Entry x:Name="UpdateUserIdEntry" Text="{Binding Id}" Placeholder="Ingrese el ID" Keyboard="Numeric" />
                     <Entry x:Name="UpdateUsernameEntry" Text="{Binding Username}" Placeholder="Ingrese el Nombre" />
@@ -107,10 +125,13 @@
                     </HorizontalStackLayout>
 
                     <Button Text="Actualizar Usuario"
-                            BackgroundColor="#142e4e"
-                            TextColor="White"
-                            Command="{Binding ActualizarPersonaCommand}"
-                Clicked="OnUpdateUserClicked" />
+                    Command="{Binding ActualizarPersonaCommand}"
+                    BackgroundColor="#142e4e"
+                    TextColor="White"
+                    CornerRadius="25"
+                    HeightRequest="45"
+                    FontSize="16"
+                    Margin="0,10" />
                 </VerticalStackLayout>
             </Frame>
 
