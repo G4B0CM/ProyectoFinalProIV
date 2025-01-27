@@ -167,7 +167,8 @@ namespace Avance2Progreso.ViewModels
                     UsersList.Remove(matchedUser);
             }
         }
-        public async Task InscribirseEnCompetencia(int competenciaId)
+
+        public async Task UnirseCompetencia(int competenciaId)
         {
             try
             {
@@ -177,21 +178,55 @@ namespace Avance2Progreso.ViewModels
                     return;
                 }
 
-                if (_user.CompetenciasInscritas.Contains(competenciaId))
+                var competencias = _user.GetCompetencias();
+                if (competencias.Contains(competenciaId))
                 {
                     StatusMessage = "Ya estás inscrito en esta competencia.";
                     return;
                 }
 
-                _user.CompetenciasInscritas.Add(competenciaId);
-                StatusMessage = "Inscripción exitosa.";
+                competencias.Add(competenciaId);
+                _user.SetCompetencias(competencias);
 
-                // Aquí se guardaría la actualización en SQLite o se enviaría a la API en el futuro
+                // Guardamos en la base de datos
+                _userRepository.ActualizarCompetencias(_user.Id, _user.CompetenciasInscritas);
+
+                StatusMessage = "Inscripción exitosa.";
             }
             catch (Exception ex)
             {
                 StatusMessage = $"Error al inscribirse: {ex.Message}";
             }
+        }
+
+        public async Task AbandonarCompetencia(int competenciaId)
+        {
+            try
+            {
+                var competencias = _user.GetCompetencias();
+                if (!competencias.Contains(competenciaId))
+                {
+                    StatusMessage = "No estás inscrito en esta competencia.";
+                    return;
+                }
+
+                competencias.Remove(competenciaId);
+                _user.SetCompetencias(competencias);
+
+                // Guardamos en la base de datos
+                _userRepository.ActualizarCompetencias(_user.Id, _user.CompetenciasInscritas);
+
+                StatusMessage = "Has abandonado la competencia.";
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error al salir de la competencia: {ex.Message}";
+            }
+        }
+
+        public List<int> VerCompetencias()
+        {
+            return _user.GetCompetencias();
         }
 
     }
