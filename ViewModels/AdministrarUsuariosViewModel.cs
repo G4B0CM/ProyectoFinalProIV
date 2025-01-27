@@ -282,6 +282,7 @@ namespace Avance2Progreso.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
             }
         }
+       
         private string EncryptPassword(string plainText)
         {
             using (Aes aes = Aes.Create())

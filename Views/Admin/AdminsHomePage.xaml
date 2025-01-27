@@ -10,13 +10,26 @@
     
     <ScrollView>
 
-    <VerticalStackLayout Background="White">
-            <StackLayout Background="#142e4e" Padding="15">
+    <VerticalStackLayout >
+
+            <Grid Background="#142e4e" Padding="15" ColumnDefinitions="*, Auto">
                 <Label Text="Bienvenido Administrador!" 
-                        FontSize="18" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextColor="White" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Start"
+                       Grid.Column="0" />
+
+                <Button Text="Cerrar sesión" 
+                        BackgroundColor="#142e4e" 
+                        TextColor="White" 
                         FontAttributes="Bold" 
-                        TextColor="White" />
-            </StackLayout>
+                        VerticalOptions="Center" 
+                        HorizontalOptions="End"
+                        Command="{Binding RegresarLoginCommand}" 
+                        Grid.Column="1" />
+            </Grid>
 
             <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
@@ -33,15 +46,31 @@
                    Grid.Row="0" Grid.Column="1" WidthRequest="200" HeightRequest="200" />
 
         </Grid>
-            <Label Text="El administrador del programa es el responsable de gestionar los usuarios registrados en el sistema. 
-                         Esto incluye la creación de nuevos usuarios, la actualización de información existente, la visualización de datos de usuarios 
-                         individuales o de todos los usuarios en conjunto, y la eliminación de registros según sea necesario. 
-                         Además, se asegura de que la información se maneje de manera segura y eficiente, interactuando directamente con la base de datos a través de la API."
-                   FontSize="16"
-                   TextColor="Gray"
-                   LineBreakMode="WordWrap"
-                   HorizontalOptions="Start" />
+            <StackLayout Padding="10">
+                <Label Text="El administrador del programa es el responsable de gestionar los usuarios registrados en el sistema."
+           FontSize="16"
+           TextColor="Gray"
+           LineBreakMode="WordWrap"
+           HorizontalOptions="Start" />
+                <Label Text="Esto incluye la creación de nuevos usuarios, la actualización de información existente, la visualización de datos de usuarios individuales o de todos los usuarios en conjunto, y la eliminación de registros según sea necesario."
+           FontSize="16"
+           TextColor="Gray"
+           LineBreakMode="WordWrap"
+           HorizontalOptions="Start" />
+                <Label Text="Además, se asegura de que la información se maneje de manera segura y eficiente, interactuando directamente con la base de datos a través de la API."
+           FontSize="16"
+           TextColor="Gray"
+           LineBreakMode="WordWrap"
+           HorizontalOptions="Start" />
+            </StackLayout>
 
+            <StackLayout Grid.Row="1" BackgroundColor="#142e4e" Padding="10">
+                <Label Text="© 2025 - PROYECTO DINERS"
+           HorizontalOptions="Center"
+           VerticalOptions="Center"
+           TextColor="White"
+           FontAttributes="Bold" />
+            </StackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

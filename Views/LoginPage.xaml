@@ -9,23 +9,16 @@
         <vm:LoginPageViewModel />
     </ContentPage.BindingContext>
 
-    <!-- Contenedor Grid con la imagen de fondo -->
     <Grid>
-        <!-- Imagen de fondo -->
         <Image Source="https://dce-documents.s3.amazonaws.com/styles/max_650x650/s3/2024-08/banner_tarjetas_2.png.webp?itok=pUO9FSHo"
                Aspect="AspectFill"
                Opacity="0.8" />
-
-        <!-- Contenido principal -->
         <ScrollView>
             <StackLayout>
                 <StackLayout>
-                    <!--Header-->
                     <StackLayout Background="#142e4e" Padding="15">
                         <Label Text="Iniciar sesión" TextColor="White" HorizontalOptions="Center"/>
                     </StackLayout>
-
-                    <!--Imagen-->
                     <StackLayout>
                         <Image Source="https://dce-documents.s3.amazonaws.com/s3fs-public/styles/max_650x650/public/2023-04/diners-club-sphaera-tarjeta_0.png.webp?itok=Z9tu5e1y"
                                WidthRequest="250"

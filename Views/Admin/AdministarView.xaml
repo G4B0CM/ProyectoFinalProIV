@@ -21,7 +21,7 @@
             </StackLayout>
 
             <!-- Agregar Usuario -->
-            <Frame BorderColor="Gray" Padding="20" CornerRadius="15" BackgroundColor="White">
+            <Frame BorderColor="Gray" Padding="20" CornerRadius="15" >
                 <VerticalStackLayout Spacing="15">
                     <Label Text="Agregar Usuario" FontSize="18" FontAttributes="Bold" TextColor="#142e4e" />
 
@@ -44,8 +44,7 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <!-- Eliminar Usuario -->
-            <Frame BorderColor="Gray" Padding="20" CornerRadius="15" BackgroundColor="White">
+            <Frame BorderColor="Gray" Padding="20" CornerRadius="15" >
                 <VerticalStackLayout Spacing="15">
                     <Label Text="Eliminar Usuario" FontSize="18" FontAttributes="Bold" TextColor="#142e4e" />
 
@@ -62,8 +61,7 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <!-- Listar Usuarios -->
-            <Frame BorderColor="Gray" Padding="20" CornerRadius="15" BackgroundColor="White">
+            <Frame BorderColor="Gray" Padding="20" CornerRadius="15">
                 <VerticalStackLayout Spacing="15">
                     <Label Text="Listar Usuarios" FontSize="18" FontAttributes="Bold" TextColor="#142e4e" />
 
@@ -90,8 +88,7 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <!-- Obtener Usuario por Id -->
-            <Frame BorderColor="Gray" Padding="20" CornerRadius="15" BackgroundColor="White">
+            <Frame BorderColor="Gray" Padding="20" CornerRadius="15" >
                 <VerticalStackLayout Spacing="15">
                     <Label Text="Obtener Usuario por Id" FontSize="18" FontAttributes="Bold" TextColor="#142e4e" />
 
@@ -110,8 +107,7 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <!-- Actualizar Usuario -->
-            <Frame BorderColor="Gray" Padding="20" CornerRadius="15" BackgroundColor="White">
+            <Frame BorderColor="Gray" Padding="20" CornerRadius="15">
                 <VerticalStackLayout Spacing="15">
                     <Label Text="Actualizar Usuario" FontSize="18" FontAttributes="Bold" TextColor="#142e4e" />
 

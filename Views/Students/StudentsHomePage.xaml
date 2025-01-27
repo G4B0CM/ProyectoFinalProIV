@@ -8,13 +8,25 @@
         <vm:CompetenciasViewModel/>
     </ContentPage.BindingContext>
     <ScrollView>
-        <VerticalStackLayout Background="Beige">
-            <StackLayout Background="#142e4e" Padding="15">
-                <Label Text="Bienvenido Estudiante" 
-           FontSize="18" 
-           FontAttributes="Bold" 
-           TextColor="White" />
-            </StackLayout>
+        <VerticalStackLayout>
+            <Grid Background="#142e4e" Padding="15" ColumnDefinitions="*, Auto">
+                <Label Text="Bienvenido Estudiante!" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextColor="White" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Start"
+                       Grid.Column="0" />       
+
+                <Button Text="Cerrar sesión" 
+                        BackgroundColor="#142e4e" 
+                        TextColor="White" 
+                        FontAttributes="Bold" 
+                        VerticalOptions="Center" 
+                        HorizontalOptions="End"
+                        Command="{Binding RegresarALoginCommmand}" 
+                        Grid.Column="1" />
+            </Grid>
             <HorizontalStackLayout HorizontalOptions="Center">
                 <Image Source="https://www.udla.edu.ec/assets/logo_og.png" 
                         WidthRequest="200" HeightRequest="200" />
@@ -98,6 +110,13 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <StackLayout Grid.Row="1" BackgroundColor="#142e4e" Padding="10">
+                <Label Text="© 2025 - PROYECTO DINERS"
+           HorizontalOptions="Center"
+           VerticalOptions="Center"
+           TextColor="White"
+           FontAttributes="Bold" />
+            </StackLayout>
         </VerticalStackLayout>
     </ScrollView>
 

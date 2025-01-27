@@ -6,9 +6,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Avance2Progreso.ViewModels;
 using CommunityToolkit.Mvvm.Input;
 
-
-
-
 namespace Avance2Progreso.ViewModels
 {
     public class CompetenciasViewModel : ObservableObject
@@ -26,6 +23,7 @@ namespace Avance2Progreso.ViewModels
         public ICommand BuscarPorNombreCommand { get; set; }
         public ICommand EditarCompetenciaCommand { get; set; }
         public ICommand LimpiarBusquedaCommand { get; set; }
+        public ICommand RegresarALoginCommmand {  get; set; }
 
 
 
@@ -123,6 +121,7 @@ namespace Avance2Progreso.ViewModels
             BuscarPorNombreCommand = new AsyncRelayCommand(BuscarCompetenciaPorNombre);
             EditarCompetenciaCommand = new AsyncRelayCommand(EditarCompetencia);
             LimpiarBusquedaCommand = new AsyncRelayCommand(LimpiarBusqueda);
+            RegresarALoginCommmand = new AsyncRelayCommand(IrALogin);
         }
         private async Task Guardar()
         {
@@ -311,6 +310,17 @@ namespace Avance2Progreso.ViewModels
             Nombre = string.Empty;
             Categoria = string.Empty;
             Descripcion = string.Empty;
+        }
+        private async Task IrALogin()
+        {
+            try
+            {
+                await Shell.Current.GoToAsync("//login");
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+            }
         }
 
     }
