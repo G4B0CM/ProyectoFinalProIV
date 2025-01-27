@@ -19,7 +19,6 @@ namespace Avance2Progreso.Services
             _httpClient = httpClient;
         }
 
-        // CREATE
         public async Task<User> CreateUserAsync(User user)
         {
             var response = await _httpClient.PostAsJsonAsync($"{BaseUrl}/create", user);
@@ -28,7 +27,6 @@ namespace Avance2Progreso.Services
             return await response.Content.ReadFromJsonAsync<User>();
         }
 
-        // READ ALL
         public async Task<List<User>> GetAllUsersAsync()
         {
             return await _httpClient.GetFromJsonAsync<List<User>>($"{BaseUrl}/all");

@@ -7,11 +7,14 @@ using Microsoft.Maui.Controls;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Avance2Progreso.ViewModels
 {
     public class LoginPageViewModel : ObservableObject
     {
+        private readonly string _encryptionKey = "EduGaboEmi";
         private string _username;
         private string _password;
         private readonly UserService _userService;
@@ -90,24 +93,24 @@ namespace Avance2Progreso.ViewModels
             {
                 var users = await _userService.GetAllUsersAsync();
                 Users = users;
+
                 var usuarioCoincidente = Users.FirstOrDefault(u => u.Username == Username);
 
-                // Verifica si el usuario existe
                 if (usuarioCoincidente == null)
                 {
                     await Shell.Current.DisplayAlert("Alerta", "No existen usuarios con ese nombre", "OK");
                     return;
                 }
 
-                // Verifica si la contraseña ingresada coincide con la del usuario
-                if (usuarioCoincidente.Password == Password)
+                var decryptedPassword = DecryptPassword(usuarioCoincidente.Password);
+
+ 
+                if (decryptedPassword == Password)
                 {
                     bool isAdmin = usuarioCoincidente.IsAdmin;
 
-                    // Obtener una referencia a AppShell directamente
                     var appShell = (AppShell)Shell.Current;
 
-                    // Cambiar las Tabs visibles dependiendo de si el usuario es admin o no
                     appShell.SetUserTabs(isAdmin);
 
                     if (usuarioCoincidente.IsAdmin)
@@ -126,11 +129,30 @@ namespace Avance2Progreso.ViewModels
             }
             catch (Exception ex)
             {
-                // Captura el error y muestra más detalles
                 Console.WriteLine($"Error: {ex.Message}");
                 await Shell.Current.DisplayAlert("Error", "Ocurrió un problema al intentar iniciar sesión", "OK");
             }
         }
+    
+        private string DecryptPassword(string cipherText)
+        {
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = Encoding.UTF8.GetBytes(_encryptionKey.PadRight(32));
+                aes.IV = new byte[16]; // Vector de inicialización de 16 bytes
+                ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
 
+                using (var ms = new MemoryStream(Convert.FromBase64String(cipherText)))
+                {
+                    using (var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (var reader = new StreamReader(cs))
+                        {
+                            return reader.ReadToEnd();
+                        }
+                    }
+                }
+            }
+        }
     }
 }

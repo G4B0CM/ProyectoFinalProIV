@@ -11,11 +11,14 @@
     <ScrollView>
 
     <VerticalStackLayout Background="White">
-        <StackLayout Background="#142e4e" Padding="15">
-            <Label Text="Administrador" TextColor="White" HorizontalOptions="Center"/>
-        </StackLayout>
-        
-        <Grid BackgroundColor="White">
+            <StackLayout Background="#142e4e" Padding="15">
+                <Label Text="Bienvenido Administrador!" 
+                        FontSize="18" 
+                        FontAttributes="Bold" 
+                        TextColor="White" />
+            </StackLayout>
+
+            <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
@@ -30,38 +33,15 @@
                    Grid.Row="0" Grid.Column="1" WidthRequest="200" HeightRequest="200" />
 
         </Grid>
- 
-       
-        <Label Text="Bienvenido Administrador" TextColor="Black" Margin="5"/>
-            <Label Text="{Binding Username}"/>
+            <Label Text="El administrador del programa es el responsable de gestionar los usuarios registrados en el sistema. 
+                         Esto incluye la creación de nuevos usuarios, la actualización de información existente, la visualización de datos de usuarios 
+                         individuales o de todos los usuarios en conjunto, y la eliminación de registros según sea necesario. 
+                         Además, se asegura de que la información se maneje de manera segura y eficiente, interactuando directamente con la base de datos a través de la API."
+                   FontSize="16"
+                   TextColor="Gray"
+                   LineBreakMode="WordWrap"
+                   HorizontalOptions="Start" />
 
-            <Frame Background="White"
-               CornerRadius="15" 
-               Padding="10" 
-               Margin="20">
-            <StackLayout>
-                <Label Text="Concursos Realizados: " TextColor="Black"/>
-                    <Label Text="{Binding Competencia}"/>
-                </StackLayout>
-            
-        </Frame>
-
-            <!-- No es necesario este frame
-        
-            <Frame Background="White"
-                CornerRadius="15" 
-                Padding="10" 
-                Margin="20">
-            <StackLayout>
-                <Label Text="Concurso Actual: " TextColor="Black"/>
-                <Label Text="Puntos: 200pts" TextColor="Black"/>
-                <Label Text="Lista de Alumnos registrados:" TextColor="Black"/>
-            </StackLayout>
-            
-            
-
-        </Frame>-->
-
-    </VerticalStackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

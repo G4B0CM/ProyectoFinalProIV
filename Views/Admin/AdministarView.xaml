@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avance2Progreso.Views.Admin.AdministarView"
              xmlns:vm="clr-namespace:Avance2Progreso.ViewModels"
-             Title="AdministarView">
+             Title="Administar Usuarios en la Base de datos">
     <ContentPage.BindingContext>
         <vm:AdministrarUsuariosViewModel/>
     </ContentPage.BindingContext>
@@ -28,7 +28,7 @@
                     <Entry x:Name="PasswordEntry" Text="{Binding Password}" Placeholder="Ingresa la contraseña" IsPassword="True" />
 
                     <HorizontalStackLayout Spacing="10">
-                        <Label Text="Is Admin:" VerticalOptions="Center" />
+                        <Label Text="Es Administrador:" VerticalOptions="Center" />
                         <Switch x:Name="IsAdminSwitch" IsToggled="{Binding IsAdmin}" />
                     </HorizontalStackLayout>
 

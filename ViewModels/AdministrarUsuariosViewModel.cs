@@ -7,12 +7,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Windows.Input;
+using System.Security.Cryptography;
+using System.Text;
 
 
 namespace Avance2Progreso.ViewModels
 {
     internal class AdministrarUsuariosViewModel : ObservableObject
     {
+        private readonly string _encryptionKey = "EduGaboEmi";
         private ObservableCollection<Models.User> _peopleList;
         private string _statusMessage;
         private readonly UserService _userService;
@@ -135,11 +138,12 @@ namespace Avance2Progreso.ViewModels
                     return;
                 }
 
+                var encryptedPassword = EncryptPassword(Password); // Cifrado de la contraseña
                 var newUser = new User
                 {
                     Username = Username,
-                    Password = Password,
-                    IsAdmin = false
+                    Password = encryptedPassword,
+                    IsAdmin = IsAdmin
                 };
 
                 var createdUser = await _userService.CreateUserAsync(newUser);
@@ -162,10 +166,11 @@ namespace Avance2Progreso.ViewModels
                     return;
                 }
 
+                var encryptedPassword = EncryptPassword(Password); // Cifrado de la contraseña
                 var newUser = new User
                 {
                     Username = Username,
-                    Password = Password,
+                    Password = encryptedPassword,
                     IsAdmin = IsAdmin
                 };
 
@@ -221,7 +226,11 @@ namespace Avance2Progreso.ViewModels
                 if (Id > 0)
                 {
                     var user = await _userService.GetUserByIdAsync(Id);
-                    Username = $"ID: {user.Id}, Username: {user.Username}, IsAdmin: {user.IsAdmin}";
+                    var decryptedPassword = DecryptPassword(user.Password); // Descifrado de la contraseña
+                    if (user.IsAdmin)
+                    Username = $"ID: {user.Id}, Username: {user.Username}, Contraseña: {decryptedPassword}, IsAdmin: Administrador";
+                    else
+                        Username = $"ID: {user.Id}, Username: {user.Username}, Contraseña: {decryptedPassword}, IsAdmin: Estudiante";
                 }
                 else
                 {
@@ -232,19 +241,19 @@ namespace Avance2Progreso.ViewModels
             {
                 await Application.Current.MainPage.DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
             }
-            
         }
         private async Task ActualizarPersona()
         {
             try
             {
-                if (Id>0)
+                if (Id > 0)
                 {
+                    var encryptedPassword = EncryptPassword(Password); // Cifrado de la contraseña
                     var updatedUser = new User
                     {
                         Id = Id,
                         Username = Username,
-                        Password = Password,
+                        Password = encryptedPassword,
                         IsAdmin = IsAdmin
                     };
 
@@ -261,7 +270,8 @@ namespace Avance2Progreso.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
             }
         }
-        private async Task IrALogin()
+    
+    private async Task IrALogin()
         {
             try
             {
@@ -272,7 +282,49 @@ namespace Avance2Progreso.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
             }
         }
+        private string EncryptPassword(string plainText)
+        {
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = Encoding.UTF8.GetBytes(_encryptionKey.PadRight(32));
+                aes.IV = new byte[16]; // Vector de inicialización de 16 bytes (relleno con ceros)
+                ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
 
+                using (var ms = new MemoryStream())
+                {
+                    using (var cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (var writer = new StreamWriter(cs))
+                        {
+                            writer.Write(plainText);
+                        }
+                    }
+                    return Convert.ToBase64String(ms.ToArray());
+                }
+            }
+        }
+
+        // Método para descifrar contraseñas
+        private string DecryptPassword(string cipherText)
+        {
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = Encoding.UTF8.GetBytes(_encryptionKey.PadRight(32));
+                aes.IV = new byte[16]; // Vector de inicialización de 16 bytes
+                ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+
+                using (var ms = new MemoryStream(Convert.FromBase64String(cipherText)))
+                {
+                    using (var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (var reader = new StreamReader(cs))
+                        {
+                            return reader.ReadToEnd();
+                        }
+                    }
+                }
+            }
+        }
 
     }
 }

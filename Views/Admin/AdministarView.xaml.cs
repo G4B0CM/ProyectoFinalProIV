@@ -15,7 +15,11 @@ public partial class AdministarView : ContentPage
         UsernameEntry.Text = string.Empty;
         PasswordEntry.Text = string.Empty;
         IsAdminSwitch.IsToggled = false;
-
+        FetchUserIdEntry.Text = string.Empty;
+        UpdateUserIdEntry.Text = string.Empty;
+        UpdateUsernameEntry.Text = string.Empty;
+        UpdatePasswordEntry.Text = string.Empty;
+        UpdateIsAdminSwitch.IsToggled = false;
     }
 
     // Evento para eliminar usuario
@@ -23,16 +27,26 @@ public partial class AdministarView : ContentPage
     {
 
         UserIdEntry.Text = string.Empty;
-
-    }
-    private async void OnFetchUsersClicked(object sender, EventArgs e)
-    {
+        FetchUserIdEntry.Text = string.Empty;
+        UpdateUserIdEntry.Text = string.Empty;
+        UpdateUsernameEntry.Text = string.Empty;
+        UpdatePasswordEntry.Text = string.Empty;
+        UpdateIsAdminSwitch.IsToggled = false;
+        FetchUserIdEntry.Text = string.Empty;
 
     }
 
     private async void OnFetchUserByIdClicked(object sender, EventArgs e)
     {
         FetchUserIdEntry.Text = string.Empty;
+        UpdateUserIdEntry.Text = string.Empty;
+        UpdateUsernameEntry.Text = string.Empty;
+        UpdatePasswordEntry.Text = string.Empty;
+        UpdateIsAdminSwitch.IsToggled = false;
+        UsernameEntry.Text = string.Empty;
+        PasswordEntry.Text = string.Empty;
+        IsAdminSwitch.IsToggled = false;
+
     }
     private async void OnUpdateUserClicked(object sender, EventArgs e)
     {
@@ -41,6 +55,9 @@ public partial class AdministarView : ContentPage
         UpdateUsernameEntry.Text = string.Empty;
         UpdatePasswordEntry.Text = string.Empty;
         UpdateIsAdminSwitch.IsToggled = false;
-
+        UsernameEntry.Text = string.Empty;
+        PasswordEntry.Text = string.Empty;
+        IsAdminSwitch.IsToggled = false;
+        FetchUserIdEntry.Text = string.Empty;
     }
 }
