@@ -12,7 +12,7 @@ namespace Avance2Progreso
             InitializeComponent();
 
 
-            MainPage =new AppShell();
+            MainPage =new LoginPage();
             UserRepo = repo;
         }
 

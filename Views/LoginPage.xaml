@@ -8,45 +8,62 @@
     <ContentPage.BindingContext>
         <vm:LoginPageViewModel />
     </ContentPage.BindingContext>
-    <ScrollView>
-    <StackLayout>
-        <StackLayout>
-            <!--Header-->
-            <StackLayout Background="#142e4e" Padding="15">
-                <Label Text="Iniciar sesión" TextColor="White" HorizontalOptions="Center"/>
-            </StackLayout>
 
-            <!--Imagen-->
+    <!-- Contenedor Grid con la imagen de fondo -->
+    <Grid>
+        <!-- Imagen de fondo -->
+        <Image Source="https://dce-documents.s3.amazonaws.com/styles/max_650x650/s3/2024-08/banner_tarjetas_2.png.webp?itok=pUO9FSHo"
+               Aspect="AspectFill"
+               Opacity="0.8" />
+
+        <!-- Contenido principal -->
+        <ScrollView>
             <StackLayout>
-                <Image Source="https://dce-documents.s3.amazonaws.com/s3fs-public/styles/max_650x650/public/2023-04/diners-club-sphaera-tarjeta_0.png.webp?itok=Z9tu5e1y"
-                       WidthRequest="250"
-                       HeightRequest="250"/>
+                <StackLayout>
+                    <!--Header-->
+                    <StackLayout Background="#142e4e" Padding="15">
+                        <Label Text="Iniciar sesión" TextColor="White" HorizontalOptions="Center"/>
+                    </StackLayout>
+
+                    <!--Imagen-->
+                    <StackLayout>
+                        <Image Source="https://dce-documents.s3.amazonaws.com/s3fs-public/styles/max_650x650/public/2023-04/diners-club-sphaera-tarjeta_0.png.webp?itok=Z9tu5e1y"
+                               WidthRequest="250"
+                               HeightRequest="250"/>
+                    </StackLayout>
+
+                    <StackLayout Background="#315876" Padding="15">
+                        <Label Text="Ingrese los siguientes datos" TextColor="White" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+                <Frame>
+                    <StackLayout>
+                        <Entry Text="{Binding Username}" Placeholder="Usuario"  />
+                        <Entry Text="{Binding Password}" Placeholder="Contraseña" IsPassword="True" />
+                    </StackLayout>
+
+                </Frame>
+
+                <StackLayout Padding="30" Spacing="25" VerticalOptions="Center">
+
+
+
+                    <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center">
+                        <Button Text="Iniciar sesión" BackgroundColor="#142e4e" TextColor="White"
+                                WidthRequest="200" HeightRequest="50"
+                                Command="{Binding NavigateToAdmin}"/>
+
+                        <Button Text="Registrarse" BackgroundColor="#142e4e" TextColor="White"
+                                WidthRequest="200" HeightRequest="50"
+                                Command="{Binding NavigateToRegistroCommand}" />
+
+                        <Label x:Name="ErrorMessage" TextColor="Red" IsVisible="False" />
+                    </StackLayout>
+
+                </StackLayout>
+
             </StackLayout>
+        </ScrollView>
+    </Grid>
 
-            <StackLayout Background="#315876" Padding="15">
-                <Label Text="Ingrese los siguientes datos" TextColor="White" HorizontalOptions="Center"/>
-            </StackLayout>
-        </StackLayout>
-
-
-            <StackLayout Padding="30" Spacing="25" VerticalOptions="Center">
-                <Entry Text="{Binding Username}" Placeholder="Usuario" />
-                <Entry Text="{Binding Password}" Placeholder="Contraseña" IsPassword="True" />
-
-                <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center">
-                    <Button Text="Iniciar sesión" BackgroundColor="#142e4e" TextColor="White"
-                            WidthRequest="200" HeightRequest="50"
-                            Command="{Binding NavigateToAdmin}"/>
-
-                    <Button Text="Registrarse" BackgroundColor="#142e4e" TextColor="White"
-                            WidthRequest="200" HeightRequest="50"
-                            Command="{Binding NavigateToRegistroCommand}" />
-                
-                <Label x:Name="ErrorMessage" TextColor="Red" IsVisible="False" />
-            </StackLayout>
-                
-            </StackLayout>
-
-    </StackLayout>
-    </ScrollView>
 </ContentPage>
